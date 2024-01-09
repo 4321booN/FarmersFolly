@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwmdigbi06eo3"]
+
+[ext_resource type="Script" path="res://objects/player/player.gd" id="1_dik4s"]
+[ext_resource type="Texture2D" uid="uid://cwkyiuwi3aq7d" path="res://objects/player/temp_player_sprites.png" id="2_jbnge"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbkpi"]
+atlas = ExtResource("2_jbnge")
+region = Rect2(0, 0, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2el5"]
+atlas = ExtResource("2_jbnge")
+region = Rect2(1, 0, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds0dn"]
+atlas = ExtResource("2_jbnge")
+region = Rect2(2, 0, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em6br"]
+atlas = ExtResource("2_jbnge")
+region = Rect2(3, 0, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxwiq"]
+atlas = ExtResource("2_jbnge")
+region = Rect2(4, 0, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvcf6"]
+atlas = ExtResource("2_jbnge")
+region = Rect2(5, 0, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5qcph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbkpi")
+}],
+"loop": true,
+"name": &"attk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2el5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds0dn")
+}],
+"loop": true,
+"name": &"walk_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em6br")
+}],
+"loop": true,
+"name": &"walk_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxwiq")
+}],
+"loop": true,
+"name": &"walk_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvcf6")
+}],
+"loop": true,
+"name": &"walk_3",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_otbvo"]
+radius = 32.0
+height = 128.0
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+script = ExtResource("1_dik4s")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(64, 128)
+sprite_frames = SubResource("SpriteFrames_5qcph")
+animation = &"walk_3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_otbvo")
