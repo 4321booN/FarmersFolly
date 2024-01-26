@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@onready var popup: Window = $"../Window"
+@onready var popup: Window = $"../Popup"
 @onready var tilemap: TileMap = $"../TileMap"
 @export var speed: float = 280
 @export var dir: int = 0

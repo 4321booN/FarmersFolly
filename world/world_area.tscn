@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dwmdigbi06eo3" path="res://objects/player/player.tscn" id="2_ucstd"]
 [ext_resource type="Texture2D" uid="uid://bvjrh1mog1qyc" path="res://world/tiles/temp_tiles.png" id="2_vkre3"]
 [ext_resource type="Script" path="res://world/tile_map.gd" id="3_vwxbq"]
-[ext_resource type="Texture2D" uid="uid://byk2skr1gk5p6" path="res://icon.svg" id="5_i0qia"]
+[ext_resource type="PackedScene" uid="uid://bkr4nwhmi5oep" path="res://ui, gui and hud/popup.tscn" id="5_py0lv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcj0y"]
 texture = ExtResource("2_vkre3")
@@ -48,24 +48,8 @@ script = ExtResource("3_vwxbq")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
 
-[node name="Window" type="AcceptDialog" parent="."]
-title = "test_interactable"
-initial_position = 2
-size = Vector2i(145, 185)
-
-[node name="Control" type="Control" parent="Window"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 92.0
-offset_bottom = 51.0
-
-[node name="TextureRect" type="TextureRect" parent="Window/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("5_i0qia")
+[node name="Popup" parent="." instance=ExtResource("5_py0lv")]
+metadata/type = 12
 
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
 [connection signal="change_tile" from="Player" to="TileMap" method="_on_player_change_tile"]

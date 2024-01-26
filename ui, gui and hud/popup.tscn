@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkr4nwhmi5oep"]
+
+[ext_resource type="Texture2D" uid="uid://byk2skr1gk5p6" path="res://icon.svg" id="1_7a0xe"]
+[ext_resource type="Script" path="res://ui, gui and hud/popup.gd" id="1_bdo6v"]
+
+[node name="Popup" type="AcceptDialog"]
+script = ExtResource("1_bdo6v")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 137.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_7a0xe")
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
