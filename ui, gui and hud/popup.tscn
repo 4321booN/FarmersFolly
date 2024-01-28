@@ -4,15 +4,24 @@
 [ext_resource type="Script" path="res://ui, gui and hud/popup.gd" id="1_bdo6v"]
 
 [node name="Popup" type="AcceptDialog"]
+initial_position = 2
+size = Vector2i(200, 250)
+visible = true
 script = ExtResource("1_bdo6v")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 137.0
-offset_bottom = 136.0
+offset_right = 192.0
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
