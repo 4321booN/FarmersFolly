@@ -1,15 +1,27 @@
 extends CharacterBody2D
 
 
-@onready var popup: Window = $"../Popup"
 @onready var tilemap: TileMap = $"../TileMap"
 @export var speed: float = 280
 @export var dir: int = 0
 @export var at_mouse_tile_id: int
 var tile_pos: Vector2i
-var breakables: Array = [2,3]
-var interactables: Array = [1]
+var breakables: Array = [1]
 var nothing: Array = [-1, 0]
+var inventory: Array = [
+	{
+		"item" : "stone",
+		"count" : 3
+	},
+	{
+		"item" : "stick",
+		"count" : 2
+	},
+	{
+		"item" : "fiber",
+		"count" : 1
+	}
+]
 signal get_tile_data
 signal change_tile
 
@@ -24,6 +36,8 @@ func _physics_process(_delta: float):
 	print(at_mouse_tile_id)
 
 	move_and_slide()
+
+	z_index = position.y
 
 	if dir > 3:
 		dir = 3
@@ -60,18 +74,12 @@ func _physics_process(_delta: float):
 				emit_signal("change_tile", 0, Vector2i(0,0), 1)
 				print("attack sucsessful")
 
-	if Input.is_action_pressed("interact") and !popup.visible:
+	if Input.is_action_pressed("interact"):
 		print("interact action")
-		for j in len(interactables):
-			if at_mouse_tile_id == interactables[j]:
-				popup.show()
-				print("interaction sucsessful")
-			else:
-				print("interaction failed")
-				for k in len(nothing):
-					if at_mouse_tile_id == nothing[k]:
-						emit_signal("change_tile", 0, Vector2i(1,1), 1)
-						print("placement sucsessful")
+		for k in len(nothing):
+			if at_mouse_tile_id == nothing[k]:
+				emit_signal("change_tile", 0, Vector2i(1,1), 1)
+				print("placement sucsessful")
 
 
 func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:

@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=9 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
+[ext_resource type="PackedScene" uid="uid://h4r6gvdf4iee" path="res://world/tiles/workbench.tscn" id="2_lrc43"]
 [ext_resource type="PackedScene" uid="uid://dwmdigbi06eo3" path="res://objects/player/player.tscn" id="2_ucstd"]
 [ext_resource type="Texture2D" uid="uid://bvjrh1mog1qyc" path="res://world/tiles/temp_tiles.png" id="2_vkre3"]
 [ext_resource type="Script" path="res://world/tile_map.gd" id="3_vwxbq"]
-[ext_resource type="PackedScene" uid="uid://bkr4nwhmi5oep" path="res://ui, gui and hud/popup.tscn" id="5_py0lv"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ctfg2"]
+scenes/1/scene = ExtResource("2_lrc43")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcj0y"]
 texture = ExtResource("2_vkre3")
@@ -16,14 +19,6 @@ texture_region_size = Vector2i(64, 64)
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/custom_data_0 = 1
-0:1/0 = 0
-0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:1/0/physics_layer_0/angular_velocity = 0.0
-0:1/0/custom_data_0 = 3
-1:1/0 = 0
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/custom_data_0 = 2
 
 [sub_resource type="TileSet" id="TileSet_45bqx"]
 tile_size = Vector2i(64, 64)
@@ -31,6 +26,7 @@ physics_layer_0/collision_layer = 3
 custom_data_layer_0/name = "tile"
 custom_data_layer_0/type = 2
 sources/1 = SubResource("TileSetAtlasSource_kcj0y")
+sources/0 = SubResource("TileSetScenesCollectionSource_ctfg2")
 
 [node name="WorldArea" type="Node2D"]
 script = ExtResource("1_faidl")
@@ -40,16 +36,13 @@ texture_filter = 1
 tile_set = SubResource("TileSet_45bqx")
 format = 2
 layer_0/name = "layer0"
-layer_0/tile_data = PackedInt32Array(-65535, 1, 0, -65534, 65537, 0, 1, 1, 1, 2, 65537, 1)
+layer_0/tile_data = PackedInt32Array(-65535, 1, 0, -65534, 0, 65536)
 script = ExtResource("3_vwxbq")
 
 [node name="Player" parent="." instance=ExtResource("2_ucstd")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
-
-[node name="Popup" parent="." instance=ExtResource("5_py0lv")]
-metadata/type = 12
 
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
 [connection signal="change_tile" from="Player" to="TileMap" method="_on_player_change_tile"]
