@@ -79,7 +79,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxne"]
-size = Vector2(64, 40)
+size = Vector2(64, 32)
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
@@ -92,5 +92,5 @@ sprite_frames = SubResource("SpriteFrames_5qcph")
 animation = &"walk_3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 44)
+position = Vector2(0, 48)
 shape = SubResource("RectangleShape2D_lkxne")

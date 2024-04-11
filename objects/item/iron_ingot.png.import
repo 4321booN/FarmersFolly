@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://275f6ii2bh4t"
-path="res://.godot/imported/stone_shovel.png-e9bf758f4a0d97a4c48b07a48d5bdd7a.ctex"
+uid="uid://bgdep560qielx"
+path="res://.godot/imported/iron_ingot.png-5903afa2f470665b0d7c94d264936f4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/item/stone_shovel.png"
-dest_files=["res://.godot/imported/stone_shovel.png-e9bf758f4a0d97a4c48b07a48d5bdd7a.ctex"]
+source_file="res://objects/item/iron_ingot.png"
+dest_files=["res://.godot/imported/iron_ingot.png-5903afa2f470665b0d7c94d264936f4e.ctex"]
 
 [params]
 

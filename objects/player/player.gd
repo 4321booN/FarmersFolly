@@ -2,25 +2,42 @@ extends CharacterBody2D
 
 
 @onready var tilemap: TileMap = $"../TileMap"
-@export var speed: float = 280
-@export var dir: int = 0
-@export var at_mouse_tile_id: int
-var tile_pos: Vector2i
-var breakables: Array = [1]
-var nothing: Array = [-1, 0]
-var inventory: Array = [
+@onready var inventory: Array = [
 	{
 		"item" : "stone",
-		"count" : 3
+		"count" : 1000
+	},
+	{
+		"item" : "fiber",
+		"count" : 1
 	},
 	{
 		"item" : "stick",
 		"count" : 2
 	},
 	{
-		"item" : "fiber",
-		"count" : 1
+		"item": "stone_axe",
+		"count": 10
 	}
+]
+@export var speed: float = 280
+@export var dir: int = 0
+@export var at_mouse_tile_id: int
+var tile_pos: Vector2i
+var popup_open: bool = false
+var interacables: Array = [2, 3]
+var breakables: Array = [2, 3]
+var nothing: Array = [-1, 0]
+var items: Array = [
+	"clay",
+	"fiber",
+	"leather",
+	'stick',
+	'stone',
+	'string',
+	'stone_axe',
+	'stone_pickaxe',
+	'stone_spear'
 ]
 signal get_tile_data
 signal change_tile
@@ -37,12 +54,18 @@ func _physics_process(_delta: float):
 
 	move_and_slide()
 
+	@warning_ignore("narrowing_conversion")
 	z_index = position.y
 
 	if dir > 3:
 		dir = 3
 	elif dir < 0:
 		dir = 0
+
+	if not is_walking():
+		$PlayerSprite.play("idle")
+	else:
+		$PlayerSprite.play("walk_" + str(dir))
 
 	if Input.is_action_pressed("walk_l"):
 		velocity[0] = -speed
@@ -62,25 +85,50 @@ func _physics_process(_delta: float):
 	else:
 		velocity[1] = 0
 
-	if !(Input.is_action_pressed("walk_d") or Input.is_action_pressed("walk_u") or Input.is_action_pressed("walk_r") or Input.is_action_pressed("walk_l")):
-		$PlayerSprite.play("idle")
-	else:
-		$PlayerSprite.play("walk_" + str(dir))
 
-	if Input.is_action_pressed("attack"):
-		print("attack action")
-		for i in len(breakables):
-			if at_mouse_tile_id == breakables[i]:
-				emit_signal("change_tile", 0, Vector2i(0,0), 1)
-				print("attack sucsessful")
-
-	if Input.is_action_pressed("interact"):
-		print("interact action")
-		for k in len(nothing):
-			if at_mouse_tile_id == nothing[k]:
-				emit_signal("change_tile", 0, Vector2i(1,1), 1)
-				print("placement sucsessful")
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_action_released("break"):
+			print("break action")
+			for i in len(breakables):
+				for j in len(interacables):
+					if at_mouse_tile_id == breakables[i] and not popup_open:
+						if at_mouse_tile_id == interacables[j]:
+							emit_signal("change_tile", Vector2i(1,0), 1)
+							print("break sucsessful")
+							break
+						else:
+							emit_signal("change_tile", Vector2i(0,0), 1)
+							print("break sucsessful")
+							break
+		elif event.is_action_pressed("interact"):
+			print("interact action")
+			for j in len(nothing):
+				for k in len(interacables):
+					if at_mouse_tile_id == nothing[j] and at_mouse_tile_id != interacables[k] and not popup_open:
+						emit_signal("change_tile", Vector2i(1,0), 1)
+						print("placement sucsessful")
 
 
 func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:
 	at_mouse_tile_id = tile_id
+
+
+func add_inventory_item(item: String, count: int):
+	var found: bool = false
+	for i: int in len(inventory):
+		if inventory[i]['item'] == item && inventory[i]['count'] < 100:
+			found = true
+			inventory[i]['count'] += count
+	if not found:
+		inventory.append({
+			"item": item,
+			"count": count
+		})
+
+
+func is_walking():
+	return (Input.is_action_pressed("walk_d")
+		 or Input.is_action_pressed("walk_u")
+		 or Input.is_action_pressed("walk_r")
+		 or Input.is_action_pressed("walk_l"))

@@ -6,13 +6,29 @@ var layer0: int = 0
 var tile_pos: Vector2i
 var tile_data_layer: String = "tile"
 var tile_id: int
+@onready var hotbar_slots: Array = [
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item2",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item3",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item4",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item5",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item6",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item7",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item8",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item9",
+	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item10"
+]
+@onready var player: CharacterBody2D = $Player
 @onready var tile_map: TileMap = $TileMap
 
 func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	pass
+	for i in len(player.inventory):
+		if i < 10:
+			hotbar_slots[i].texture_rect.texture = ItemTextures.textures[player.inventory[i].item]
+			hotbar_slots[i].count_label.text = str(player.inventory[i].count)
 
 func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:
 #	gets the global coods of the tile at 'retrival_pos'
@@ -25,5 +41,9 @@ func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:
 		tile_id = tile_data.get_custom_data(tile_data_layer)
 		emit_signal("at_mouse_tile_id", tile_id)
 	else:
-		tile_id = -1
-		emit_signal("at_mouse_tile_id", tile_id)
+		tile_id = tile_map.get_cell_alternative_tile(layer0, tile_pos)
+		if tile_id:
+			emit_signal("at_mouse_tile_id", tile_id)
+		else:
+			tile_id = -1
+			emit_signal("at_mouse_tile_id", tile_id)
