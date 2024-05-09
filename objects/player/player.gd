@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var inventory: Array = [
 	{
 		"item" : "stone",
-		"count" : 100
+		"count" : 10
 	},
 	{
 		"item" : "fiber",
@@ -35,8 +35,10 @@ func _ready():
 func _physics_process(_delta: float):
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
+	print(inventory)
 
 	move_and_slide()
+	remove_0stacks()
 
 	if dir > 3:
 		dir = 3
@@ -90,6 +92,12 @@ func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:
 	at_mouse_tile_id = tile_id
 
 
+func remove_0stacks():
+	for i: int in len(inventory):
+		if i < len(inventory):
+			if inventory[i]["count"] <= 0:
+				inventory.remove_at(i)
+
 func add_inventory_item(item: String, count: int):
 	var found: bool = false
 	for i: int in len(inventory):
@@ -110,16 +118,18 @@ func remove_inventory_item(item: String, count: int):
 
 
 func inventory_has_item(item: String, count: int):
-	var found: bool
+	var found: bool = false
 	for i: int in len(inventory):
-		if count != 0:
-			if inventory[i]['item'] == item && inventory[i]['count'] == count:
+		if count > 0:
+			if inventory[i]['item'] == item && inventory[i]['count'] >= count:
 				found = true
+				break
 			else:
 				found = false
-		else:
+		elif count <= 0:
 			if inventory[i]['item'] == item:
 				found = true
+				break
 			else:
 				found = false
 	return found

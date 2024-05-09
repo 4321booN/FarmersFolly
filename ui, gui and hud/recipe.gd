@@ -28,14 +28,14 @@ func _process(delta):
 
 
 func _on_craft_button_pressed():
-	if true: #player.inventory_has_item(ItemParser.names.find_key(ingredient_label0.text.left(-3), 0), ingredient_label0.text.right(-(ingredient_label0.text.length() - 1)).to_int()) && player.inventory_has_item(ItemParser.names.find_key(ingredient_label1.text.left(-3), 0), ingredient_label1.text.right(-(ingredient_label1.text.length() - 1)).to_int()) && player.inventory_has_item(ItemParser.names.find_key(ingredient_label2.text.left(-3), 0), ingredient_label2.text.right(-(ingredient_label2.text.length() - 1)).to_int()):# && player.inventory_has_item(ItemParser.names.find_key(ingredient_label3.text.left(-3), 0), ingredient_label3.text.right(-(ingredient_label3.text.length() - 1)).to_int()) && player.inventory_has_item(ItemParser.names.find_key(ingredient_label4.text.left(-3), 0), ingredient_label4.text.right(-(ingredient_label4.text.length() - 1)).to_int()) && player.inventory_has_item(ItemParser.names.find_key(ingredient_label5.text.left(-3), 0), ingredient_label5.text.right(-(ingredient_label5.text.length() - 1)).to_int()):
+	if player_has_item(ingredient_label0) && player_has_item(ingredient_label1) && player_has_item(ingredient_label2) && player_has_item(ingredient_label3) && player_has_item(ingredient_label4) && player_has_item(ingredient_label5):
 		var is_crafted: bool
 		#      is_item_tool(        this_recipe's_item                         )
 		if not ItemParser.tools.has(ItemParser.names.find_key(result_label.text)):
 			player.add_inventory_item(ItemParser.names.find_key(result_label.text), 1)
 			is_crafted = true
 		elif ItemParser.tools.has(ItemParser.names.find_key(result_label.text)):
-			if player.inventory_has_item(ItemParser.names.find_key(result_label.text), 1):
+			if player.inventory_has_item(ItemParser.names.find_key(result_label.text), 0):
 				is_crafted = false
 			else:
 				player.add_inventory_item(ItemParser.names.find_key(result_label.text), 1)
@@ -53,3 +53,10 @@ func _on_craft_button_pressed():
 				player.remove_inventory_item(ItemParser.names.find_key(ingredient_label4.text.left(-3)), ingredient_label4.text.right(-(ingredient_label4.text.length() - 1)).to_int())
 			if ingredient_label5.text:
 				player.remove_inventory_item(ItemParser.names.find_key(ingredient_label5.text.left(-3)), ingredient_label5.text.right(-(ingredient_label5.text.length() - 1)).to_int())
+
+
+func player_has_item(label: Label):
+	if label.text != "":
+		return player.inventory_has_item(ItemParser.names.find_key(label.text.left(-3)), label.text.right(-(label.text.length() - 1)).to_int())
+	else:
+		return true
