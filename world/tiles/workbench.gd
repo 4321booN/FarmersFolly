@@ -3,7 +3,7 @@ extends StaticBody2D
 
 @onready var popup: Window = $WorkbenchPopup
 @onready var control: Control = $WorkbenchPopup/Control
-@onready var sprite: TextureButton = $Sprite2D
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var player: CharacterBody2D = $"../../Player"
 @onready var recipe_container = $WorkbenchPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RecipeContainer
 
@@ -52,6 +52,7 @@ var recipes: Array = [
 		"result" : "stone_axe"
 	}
 ]
+var mouse_touching: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -89,14 +90,19 @@ func _process(_delta):
 		sprite.z_index = 2
 	else:
 		sprite.z_index = 0
-
-
-func _on_sprite_2d_pressed():
-	popup.show()
-	player.popup_open = true
+	if Input.is_action_just_released("interact") && mouse_touching:
+		popup.show()
+		player.popup_open = true
 
 
 func _on_button_pressed():
 	popup.hide()
 	player.popup_open = false
 
+
+func _on_area_2d_mouse_entered():
+	mouse_touching = true
+
+
+func _on_area_2d_mouse_exited():
+	mouse_touching = false

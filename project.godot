@@ -23,6 +23,10 @@ ItemParser="*res://objects/item/item_parser.gd"
 
 window/size/resizable=false
 
+[dotnet]
+
+project/assembly_name="GHG 23-24"
+
 [filesystem]
 
 import/blender/enabled=false

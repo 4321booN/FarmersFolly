@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hwljtonh2uph"
-path="res://.godot/imported/Workbench.png-e2f26aab902469ff6f8597ac51b97d5f.ctex"
+uid="uid://dunerk75vj2ni"
+path="res://.godot/imported/copper_pickaxe.png-6a588dbd81da677c2837e28d6025fdc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/tiles/Workbench.png"
-dest_files=["res://.godot/imported/Workbench.png-e2f26aab902469ff6f8597ac51b97d5f.ctex"]
+source_file="res://objects/item/copper_pickaxe.png"
+dest_files=["res://.godot/imported/copper_pickaxe.png-6a588dbd81da677c2837e28d6025fdc3.ctex"]
 
 [params]
 

@@ -35,7 +35,6 @@ func _ready():
 func _physics_process(_delta: float):
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
-	print(at_mouse_tile_id)
 
 	move_and_slide()
 
@@ -71,25 +70,20 @@ func _physics_process(_delta: float):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_action_released("break"):
-			print("break action")
 			for i in len(breakables):
 				for j in len(interacables):
 					if at_mouse_tile_id == breakables[i] and not popup_open:
 						if at_mouse_tile_id == interacables[j]:
 							emit_signal("change_tile", Vector2i(1,0), 1)
-							print("break sucsessful")
 							break
 						else:
 							emit_signal("change_tile", Vector2i(0,0), 1)
-							print("break sucsessful")
 							break
 		elif event.is_action_pressed("interact"):
-			print("interact action")
 			for j in len(nothing):
 				for k in len(interacables):
 					if at_mouse_tile_id == nothing[j] and at_mouse_tile_id != interacables[k] and not popup_open:
 						emit_signal("change_tile", Vector2i(1,0), 1)
-						print("placement sucsessful")
 
 
 func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:
@@ -116,20 +110,19 @@ func remove_inventory_item(item: String, count: int):
 
 
 func inventory_has_item(item: String, count: int):
-	if item:
-		for i: int in len(inventory):
-			if count:
-				if inventory[i]['item'] == item && inventory[i]['count'] == count:
-					return true
-				else:
-					return false
+	var found: bool
+	for i: int in len(inventory):
+		if count != 0:
+			if inventory[i]['item'] == item && inventory[i]['count'] == count:
+				found = true
 			else:
-				if inventory[i]['item'] == item:
-					return true
-				else:
-					return false
-	else:
-		return true
+				found = false
+		else:
+			if inventory[i]['item'] == item:
+				found = true
+			else:
+				found = false
+	return found
 
 
 func is_walking():

@@ -2,10 +2,11 @@ extends StaticBody2D
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D = $"../../Player"
-@onready var sprite = $TextureButton
+@onready var sprite = $Sprite2D
 
 var anim: int = 0
 var grown: bool = false
+var mouse_toutching: bool = false
 
 func _process(_delta):
 	if not anim_player.is_playing() and anim < 3:
@@ -22,9 +23,14 @@ func _process(_delta):
 	else:
 		sprite.z_index = 0
 
-
-
-func _on_texture_button_pressed():
-	if grown:
+	if grown && Input.is_action_just_released("interact") && mouse_toutching:
 		player.add_inventory_item("stick", randi_range(3, 6))
 		anim = 0
+
+
+func _on_area_2d_mouse_entered():
+	mouse_toutching = true
+
+
+func _on_area_2d_mouse_exited():
+	mouse_toutching = false

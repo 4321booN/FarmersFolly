@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://h4r6gvdf4iee"]
+[gd_scene load_steps=14 format=3 uid="uid://h4r6gvdf4iee"]
 
-[ext_resource type="Texture2D" uid="uid://hwljtonh2uph" path="res://world/tiles/Workbench.png" id="1_8ba4o"]
 [ext_resource type="Script" path="res://world/tiles/workbench.gd" id="1_fosi6"]
 [ext_resource type="Texture2D" uid="uid://ijyvsr8l1ypa" path="res://world/tiles/tile_grass.png" id="2_oa31e"]
+[ext_resource type="Texture2D" uid="uid://cpygu7p2d2cqq" path="res://world/tiles/workbench.png" id="3_kofxt"]
 [ext_resource type="Theme" uid="uid://c4dqfbr034o6g" path="res://ui, gui and hud/theme.tres" id="4_6duky"]
 [ext_resource type="PackedScene" uid="uid://bnbe18xxkv8ty" path="res://ui, gui and hud/player_inventory.tscn" id="4_n5i7h"]
 [ext_resource type="FontFile" uid="uid://dxhj70dmp2mf7" path="res://fonts and styles/GameIcons.ttf" id="5_uqasy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tbvb"]
 size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywq3x"]
+size = Vector2(64, 96)
 
 [sub_resource type="ImageTexture" id="ImageTexture_20mdf"]
 
@@ -27,25 +30,28 @@ texture_filter = 1
 position = Vector2(0, -16)
 script = ExtResource("1_fosi6")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(0, 16)
-texture = ExtResource("2_oa31e")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_4tbvb")
 
-[node name="Sprite2D" type="TextureButton" parent="."]
-offset_left = -32.0
-offset_top = -48.0
-offset_right = 32.0
-offset_bottom = 48.0
-texture_normal = ExtResource("1_8ba4o")
-texture_focused = ExtResource("1_8ba4o")
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("2_oa31e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(4.57143, 4.57143)
+texture = ExtResource("3_kofxt")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ywq3x")
 
 [node name="WorkbenchPopup" type="Window" parent="."]
 initial_position = 2
 size = Vector2i(1100, 553)
+visible = false
 unresizable = true
 borderless = true
 always_on_top = true
@@ -120,5 +126,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_l3exr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f7wxr")
 text = "H"
 
-[connection signal="pressed" from="Sprite2D" to="." method="_on_sprite_2d_pressed"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="pressed" from="WorkbenchPopup/Control/HBoxContainer/MarginContainer2/Button" to="." method="_on_button_pressed"]
