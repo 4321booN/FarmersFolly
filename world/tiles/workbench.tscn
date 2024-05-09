@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://h4r6gvdf4iee"]
+[gd_scene load_steps=13 format=3 uid="uid://h4r6gvdf4iee"]
 
 [ext_resource type="Texture2D" uid="uid://hwljtonh2uph" path="res://world/tiles/Workbench.png" id="1_8ba4o"]
 [ext_resource type="Script" path="res://world/tiles/workbench.gd" id="1_fosi6"]
 [ext_resource type="Texture2D" uid="uid://ijyvsr8l1ypa" path="res://world/tiles/tile_grass.png" id="2_oa31e"]
+[ext_resource type="Theme" uid="uid://c4dqfbr034o6g" path="res://ui, gui and hud/theme.tres" id="4_6duky"]
 [ext_resource type="PackedScene" uid="uid://bnbe18xxkv8ty" path="res://ui, gui and hud/player_inventory.tscn" id="4_n5i7h"]
+[ext_resource type="FontFile" uid="uid://dxhj70dmp2mf7" path="res://fonts and styles/GameIcons.ttf" id="5_uqasy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tbvb"]
 size = Vector2(64, 32)
@@ -15,6 +17,10 @@ size = Vector2(64, 32)
 [sub_resource type="Theme" id="Theme_gv67m"]
 Window/icons/close = SubResource("ImageTexture_20mdf")
 Window/icons/close_pressed = SubResource("ImageTexture_6hrrs")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3exr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7wxr"]
 
 [node name="Workbench" type="StaticBody2D"]
 texture_filter = 1
@@ -39,8 +45,7 @@ texture_focused = ExtResource("1_8ba4o")
 
 [node name="WorkbenchPopup" type="Window" parent="."]
 initial_position = 2
-size = Vector2i(952, 448)
-visible = false
+size = Vector2i(1100, 553)
 unresizable = true
 borderless = true
 always_on_top = true
@@ -53,6 +58,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_6duky")
 
 [node name="ColorRect" type="ColorRect" parent="WorkbenchPopup/Control"]
 layout_mode = 1
@@ -63,28 +69,56 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.129412, 0.14902, 0.180392, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="WorkbenchPopup/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WorkbenchPopup/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WorkbenchPopup/Control/MarginContainer"]
-layout_mode = 2
-
-[node name="PlayerInventory" parent="WorkbenchPopup/Control/MarginContainer/HBoxContainer" instance=ExtResource("4_n5i7h")]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="WorkbenchPopup/Control/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WorkbenchPopup/Control/HBoxContainer"]
+custom_minimum_size = Vector2(908, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Close"
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WorkbenchPopup/Control/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayerInventory" parent="WorkbenchPopup/Control/HBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("4_n5i7h")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WorkbenchPopup/Control/HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="WorkbenchPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="WorkbenchPopup/Control/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 513
+
+[node name="Button" type="Button" parent="WorkbenchPopup/Control/HBoxContainer/MarginContainer2"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.713726, 0.0901961, 0.164706, 1)
+theme_override_colors/font_pressed_color = Color(0.713726, 0.0901961, 0.164706, 1)
+theme_override_colors/font_hover_color = Color(0.905882, 0.113725, 0.211765, 1)
+theme_override_colors/font_focus_color = Color(0.905882, 0.113725, 0.211765, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("5_uqasy")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l3exr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f7wxr")
+text = "H"
 
 [connection signal="pressed" from="Sprite2D" to="." method="_on_sprite_2d_pressed"]
-[connection signal="pressed" from="WorkbenchPopup/Control/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="WorkbenchPopup/Control/HBoxContainer/MarginContainer2/Button" to="." method="_on_button_pressed"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwjux1xw8qmbv"]
+[gd_scene load_steps=3 format=3 uid="uid://cwjux1xw8qmbv"]
 
+[ext_resource type="Theme" uid="uid://c4dqfbr034o6g" path="res://ui, gui and hud/theme.tres" id="1_3a6ni"]
 [ext_resource type="Script" path="res://ui, gui and hud/item.gd" id="1_qsu1f"]
 
 [node name="Item" type="Control"]
@@ -12,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_3a6ni")
 script = ExtResource("1_qsu1f")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -21,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.556863, 0.556863, 0.556863, 1)
+color = Color(0.262745, 0.247059, 0.32549, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
 layout_mode = 1

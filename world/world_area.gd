@@ -21,13 +21,14 @@ var tile_id: int
 @onready var player: CharacterBody2D = $Player
 @onready var tile_map: TileMap = $TileMap
 
+
 func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
 	for i in len(player.inventory):
 		if i < 10:
-			hotbar_slots[i].texture_rect.texture = ItemTextures.textures[player.inventory[i].item]
+			hotbar_slots[i].texture_rect.texture = ItemParser.textures[player.inventory[i].item]
 			hotbar_slots[i].count_label.text = str(player.inventory[i].count)
 
 func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:

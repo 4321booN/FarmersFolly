@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://c4dqfbr034o6g"]
+
+[ext_resource type="FontFile" uid="uid://bpwovrveejdp7" path="res://fonts and styles/dogicapixel.ttf" id="1_ggysy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxilk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rlpla"]
+bg_color = Color(0.705882, 0.772549, 0.894118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3veby"]
+bg_color = Color(0.705882, 0.772549, 0.894118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofjkx"]
+bg_color = Color(0.705882, 0.772549, 0.894118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cpf8"]
+bg_color = Color(0.0862745, 0.101961, 0.121569, 1)
+border_width_left = 8
+border_color = Color(0.0862745, 0.101961, 0.121569, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yple6"]
+
+[resource]
+Button/fonts/font = ExtResource("1_ggysy")
+Button/styles/focus = SubResource("StyleBoxEmpty_dxilk")
+Label/fonts/font = ExtResource("1_ggysy")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_rlpla")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_3veby")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ofjkx")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_0cpf8")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_yple6")

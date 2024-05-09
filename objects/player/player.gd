@@ -5,19 +5,15 @@ extends CharacterBody2D
 @onready var inventory: Array = [
 	{
 		"item" : "stone",
-		"count" : 1000
+		"count" : 100
 	},
 	{
 		"item" : "fiber",
-		"count" : 1
+		"count" : 10
 	},
 	{
 		"item" : "stick",
-		"count" : 2
-	},
-	{
-		"item": "stone_axe",
-		"count": 10
+		"count" : 10
 	}
 ]
 @export var speed: float = 280
@@ -28,17 +24,6 @@ var popup_open: bool = false
 var interacables: Array = [2, 3]
 var breakables: Array = [2, 3]
 var nothing: Array = [-1, 0]
-var items: Array = [
-	"clay",
-	"fiber",
-	"leather",
-	'stick',
-	'stone',
-	'string',
-	'stone_axe',
-	'stone_pickaxe',
-	'stone_spear'
-]
 signal get_tile_data
 signal change_tile
 
@@ -53,9 +38,6 @@ func _physics_process(_delta: float):
 	print(at_mouse_tile_id)
 
 	move_and_slide()
-
-	@warning_ignore("narrowing_conversion")
-	z_index = position.y
 
 	if dir > 3:
 		dir = 3
@@ -125,6 +107,29 @@ func add_inventory_item(item: String, count: int):
 			"item": item,
 			"count": count
 		})
+
+
+func remove_inventory_item(item: String, count: int):
+	for i: int in len(inventory):
+		if inventory[i]['item'] == item && inventory[i]['count'] > 0:
+			inventory[i]['count'] -= count
+
+
+func inventory_has_item(item: String, count: int):
+	if item:
+		for i: int in len(inventory):
+			if count:
+				if inventory[i]['item'] == item && inventory[i]['count'] == count:
+					return true
+				else:
+					return false
+			else:
+				if inventory[i]['item'] == item:
+					return true
+				else:
+					return false
+	else:
+		return true
 
 
 func is_walking():

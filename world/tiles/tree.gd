@@ -2,8 +2,7 @@ extends StaticBody2D
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D = $"../../Player"
-@onready var sprite_grass = $Sprite2D2
-@onready var sprite_tree = $TextureButton
+@onready var sprite = $TextureButton
 
 var anim: int = 0
 var grown: bool = false
@@ -17,10 +16,11 @@ func _process(_delta):
 		grown = true
 	else:
 		grown = false
-	@warning_ignore("narrowing_conversion")
-	sprite_tree.z_index = position.y
-	@warning_ignore("narrowing_conversion")
-	sprite_grass.z_index = position.y - 100
+		
+	if player.position.y + 32 < position.y:
+		sprite.z_index = 2
+	else:
+		sprite.z_index = 0
 
 
 

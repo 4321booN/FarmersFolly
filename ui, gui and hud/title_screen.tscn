@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://obk0d8g1o5kt"]
+[gd_scene load_steps=4 format=3 uid="uid://obk0d8g1o5kt"]
 
+[ext_resource type="Theme" uid="uid://c4dqfbr034o6g" path="res://ui, gui and hud/theme.tres" id="1_6gx88"]
 [ext_resource type="Script" path="res://ui, gui and hud/title_screen.gd" id="1_mhkga"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v0mp3"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_6gx88")
 script = ExtResource("1_mhkga")
 
 [node name="ColorRect" type="ColorRect" parent="."]
