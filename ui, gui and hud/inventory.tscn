@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnbe18xxkv8ty"]
+
+[ext_resource type="Theme" uid="uid://c4dqfbr034o6g" path="res://ui, gui and hud/theme.tres" id="1_c7v7x"]
+[ext_resource type="Script" path="res://ui, gui and hud/inventory.gd" id="2_gj2mg"]
+[ext_resource type="PackedScene" uid="uid://cwjux1xw8qmbv" path="res://ui, gui and hud/item.tscn" id="3_csipf"]
+
+[node name="PlayerInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_c7v7x")
+script = ExtResource("2_gj2mg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Item" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item2" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item3" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item4" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item5" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item6" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item7" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item8" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item9" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item10" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item11" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
+
+[node name="Item12" parent="MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_csipf")]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2

@@ -35,7 +35,6 @@ func _ready():
 func _physics_process(_delta: float):
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
-	print(inventory)
 
 	move_and_slide()
 	remove_0stacks()

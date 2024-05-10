@@ -12,7 +12,8 @@ var textures: Dictionary = {
 	"stone_axe" : ResourceLoader.load("res://objects/item/stone_axe.png"),
 	"stone_pickaxe" : ResourceLoader.load("res://objects/item/stone_pickaxe.png"),
 	"stone_spear" : ResourceLoader.load("res://objects/item/stone_spear.png"),
-	"string" : ResourceLoader.load("res://objects/item/string.png")
+	"string" : ResourceLoader.load("res://objects/item/string.png"),
+	"" : ResourceLoader.load("res://objects/item/null.png")
 }
 var names: Dictionary = {
 	"clay" : "Clay",
