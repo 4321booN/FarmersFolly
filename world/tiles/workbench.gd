@@ -56,15 +56,15 @@ var mouse_touching: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	for i in recipes.size():
+func _ready() -> void:
+	for i: int in recipes.size():
 		var scene: PackedScene = load("res://ui, gui and hud/recipe.tscn")
 		var scene_instance = scene.instantiate()
 		scene_instance.set_name("recipe")
 		recipe_container.add_child(scene_instance)
 		recipe_container.get_child(i).result_texture.texture = ItemParser.textures[recipes[i]["result"]]
 		recipe_container.get_child(i).result_label.text = ItemParser.names[recipes[i]["result"]]
-		for j in recipes[i]["ingredients"].size():
+		for j: int in recipes[i]["ingredients"].size():
 			if j == 0:
 				recipe_container.get_child(i).ingredient_texture0.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
 				recipe_container.get_child(i).ingredient_label0.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
@@ -85,7 +85,7 @@ func _ready():
 				recipe_container.get_child(i).ingredient_label5.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
 
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if player.position.y < position.y:
 		sprite.z_index = 2
 	else:
@@ -95,12 +95,12 @@ func _process(_delta):
 		player.popup_open = true
 
 
-func _on_button_pressed():
+func _on_button_pressed() -> void:
 	popup.hide()
 	player.popup_open = false
 
 
-func _on_area_2d_mouse_entered():
+func _on_area_2d_mouse_entered() -> void:
 	mouse_touching = true
 
 

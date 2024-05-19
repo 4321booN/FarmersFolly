@@ -28,11 +28,11 @@ signal get_tile_data
 signal change_tile
 
 
-func _ready():
+func _ready() -> void:
 	pass
 
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
 
@@ -68,11 +68,11 @@ func _physics_process(_delta: float):
 		velocity[1] = 0
 
 
-func _input(event):
+func _input(event) -> void:
 	if event is InputEventMouseButton:
 		if event.is_action_released("break"):
-			for i in len(breakables):
-				for j in len(interacables):
+			for i: int in len(breakables):
+				for j: int in len(interacables):
 					if at_mouse_tile_id == breakables[i] and not popup_open:
 						if at_mouse_tile_id == interacables[j]:
 							emit_signal("change_tile", Vector2i(1,0), 1)
@@ -81,8 +81,8 @@ func _input(event):
 							emit_signal("change_tile", Vector2i(0,0), 1)
 							break
 		elif event.is_action_pressed("interact"):
-			for j in len(nothing):
-				for k in len(interacables):
+			for j: int in len(nothing):
+				for k: int in len(interacables):
 					if at_mouse_tile_id == nothing[j] and at_mouse_tile_id != interacables[k] and not popup_open:
 						emit_signal("change_tile", Vector2i(1,0), 1)
 
@@ -91,13 +91,13 @@ func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:
 	at_mouse_tile_id = tile_id
 
 
-func remove_0stacks():
+func remove_0stacks() -> void:
 	for i: int in len(inventory):
 		if i < len(inventory):
 			if inventory[i]["count"] <= 0:
 				inventory.remove_at(i)
 
-func add_inventory_item(item: String, count: int):
+func add_inventory_item(item: String, count: int) -> void:
 	var found: bool = false
 	for i: int in len(inventory):
 		if inventory[i]['item'] == item && inventory[i]['count'] < 100:
@@ -110,13 +110,13 @@ func add_inventory_item(item: String, count: int):
 		})
 
 
-func remove_inventory_item(item: String, count: int):
+func remove_inventory_item(item: String, count: int) -> void:
 	for i: int in len(inventory):
 		if inventory[i]['item'] == item && inventory[i]['count'] > 0:
 			inventory[i]['count'] -= count
 
 
-func inventory_has_item(item: String, count: int):
+func inventory_has_item(item: String, count: int) -> bool:
 	var found: bool = false
 	for i: int in len(inventory):
 		if count > 0:
@@ -134,7 +134,7 @@ func inventory_has_item(item: String, count: int):
 	return found
 
 
-func is_walking():
+func is_walking() -> bool:
 	return (Input.is_action_pressed("walk_d")
 		 or Input.is_action_pressed("walk_u")
 		 or Input.is_action_pressed("walk_r")

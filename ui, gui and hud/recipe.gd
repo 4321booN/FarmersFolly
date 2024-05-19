@@ -17,17 +17,16 @@ extends Control
 @onready var ingredient_texture5: TextureRect = $ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer3/IngredientTexture
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-@warning_ignore("unused_parameter")
-func _process(delta):
+func _process(_delta: float) -> void:
 	pass
 
 
-func _on_craft_button_pressed():
+func _on_craft_button_pressed() -> void:
 	if player_has_item(ingredient_label0) && player_has_item(ingredient_label1) && player_has_item(ingredient_label2) && player_has_item(ingredient_label3) && player_has_item(ingredient_label4) && player_has_item(ingredient_label5):
 		var is_crafted: bool
 		#      is_item_tool(        this_recipe's_item                         )
@@ -55,7 +54,7 @@ func _on_craft_button_pressed():
 				player.remove_inventory_item(ItemParser.names.find_key(ingredient_label5.text.left(-3)), ingredient_label5.text.right(-(ingredient_label5.text.length() - 1)).to_int())
 
 
-func player_has_item(label: Label):
+func player_has_item(label: Label) -> bool:
 	if label.text != "":
 		return player.inventory_has_item(ItemParser.names.find_key(label.text.left(-3)), label.text.right(-(label.text.length() - 1)).to_int())
 	else:

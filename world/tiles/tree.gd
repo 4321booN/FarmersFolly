@@ -8,7 +8,7 @@ var anim: int = 0
 var grown: bool = false
 var mouse_toutching: bool = false
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if not anim_player.is_playing() and anim < 3:
 		anim_player.play(str(anim))
 		anim += 1
@@ -28,9 +28,9 @@ func _process(_delta):
 		anim = 0
 
 
-func _on_area_2d_mouse_entered():
+func _on_area_2d_mouse_entered() -> void:
 	mouse_toutching = true
 
 
-func _on_area_2d_mouse_exited():
+func _on_area_2d_mouse_exited() -> void:
 	mouse_toutching = false
