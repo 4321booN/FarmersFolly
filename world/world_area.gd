@@ -26,10 +26,10 @@ func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	for i: int in len(player.inventory):
+	for i: int in len(player.hotbar):
 		if i < 10:
-			hotbar_slots[i].texture_rect.texture = ItemParser.textures[player.inventory[i].item]
-			hotbar_slots[i].count_label.text = str(player.inventory[i].count)
+			hotbar_slots[i].texture_rect.texture = ItemParser.textures[player.hotbar[i].item]
+			hotbar_slots[i].count_label.text = str(player.hotbar[i].count)
 
 func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:
 #	gets the global coods of the tile at 'retrival_pos'

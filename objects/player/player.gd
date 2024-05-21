@@ -24,6 +24,7 @@ var popup_open: bool = false
 var interacables: Array = [2, 3]
 var breakables: Array = [2, 3]
 var nothing: Array = [-1, 0]
+var hotbar: Array = []
 signal get_tile_data
 signal change_tile
 
@@ -66,6 +67,11 @@ func _physics_process(_delta: float) -> void:
 		dir = 2
 	else:
 		velocity[1] = 0
+
+	hotbar.clear()
+	for i: int in inventory.size():
+		if ItemParser.is_item_tool(inventory[i]["item"]):
+			hotbar.append(inventory[i])
 
 
 func _input(event) -> void:

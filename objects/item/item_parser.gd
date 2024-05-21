@@ -96,3 +96,7 @@ var tools: Array = [
   "stone_pickaxe",
   "stone_spear"
 ]
+
+
+func is_item_tool(item: String) -> bool:
+	return tools.has(item)

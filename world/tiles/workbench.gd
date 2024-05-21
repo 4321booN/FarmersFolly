@@ -50,7 +50,7 @@ var recipes: Array = [
 			}
 		],
 		"result" : "stone_axe"
-	}
+	},
 ]
 var mouse_touching: bool = false
 
