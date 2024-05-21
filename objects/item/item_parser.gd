@@ -34,6 +34,7 @@ var textures: Dictionary = {
 	'stone_pickaxe' : ResourceLoader.load('res://objects/item/stone_pickaxe.png'),
 	'stone_spear' : ResourceLoader.load('res://objects/item/stone_spear.png'),
 	'string' : ResourceLoader.load('res://objects/item/string.png'),
+	'workbench' : ResourceLoader.load('res://objects/item/workbench.png'),
 }
 var names: Dictionary = {
   "clay": "Clay",
@@ -68,7 +69,8 @@ var names: Dictionary = {
   "stone_axe": "Stone Axe",
   "stone_pickaxe": "Stone Pickaxe",
   "stone_spear": "Stone Spear",
-  "string": "String"
+  "string": "String",
+  "workbench": "Workbench"
 }
 
 var tools: Array = [
@@ -96,6 +98,14 @@ var tools: Array = [
   "stone_pickaxe",
   "stone_spear"
 ]
+
+var placeables: Array = [
+	"workbench"
+]
+
+
+func is_item_placeable(item: String) -> bool:
+	return placeables.has(item)
 
 
 func is_item_tool(item: String) -> bool:

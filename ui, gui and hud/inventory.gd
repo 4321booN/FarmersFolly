@@ -18,5 +18,4 @@ func _process(_delta: float) -> void:
 		if i <= len(player.inventory) - 1:
 			vboxcontainer.get_child(i).texture_rect.texture = ItemParser.textures[player.inventory[i]["item"]]
 			vboxcontainer.get_child(i).count_label.text = str(player.inventory[i]["count"])
-		print(vboxcontainer.get_child(i).count_label.text)
 

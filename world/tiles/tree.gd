@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 	else:
 		sprite.z_index = 0
 
-	if grown && Input.is_action_just_released("interact") && mouse_toutching:
+	if grown && Input.is_action_just_released("interact") or Input.is_action_just_released("break") && mouse_toutching:
 		player.add_inventory_item("stick", randi_range(3, 6))
 		anim = 0
 

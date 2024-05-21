@@ -13,7 +13,7 @@ extends CharacterBody2D
 	},
 	{
 		"item" : "stick",
-		"count" : 10
+		"count" : 16
 	}
 ]
 @export var speed: float = 280
@@ -70,7 +70,7 @@ func _physics_process(_delta: float) -> void:
 
 	hotbar.clear()
 	for i: int in inventory.size():
-		if ItemParser.is_item_tool(inventory[i]["item"]):
+		if ItemParser.is_item_tool(inventory[i]["item"]) or ItemParser.is_item_placeable(inventory[i]["item"]):
 			hotbar.append(inventory[i])
 
 

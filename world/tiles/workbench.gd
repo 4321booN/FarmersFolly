@@ -51,6 +51,19 @@ var recipes: Array = [
 		],
 		"result" : "stone_axe"
 	},
+	{
+		"ingredients" : [
+			{
+				"item" : "stick",
+				"count" : 8
+			},
+			{
+				"item" : "stone",
+				"count" : 1
+			}
+		],
+		"result" : "workbench"
+	},
 ]
 var mouse_touching: bool = false
 
