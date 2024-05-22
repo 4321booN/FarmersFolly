@@ -84,6 +84,7 @@ var recipes: Array = [
 	},
 ]
 var mouse_touching: bool = false
+var just_placed: bool = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -127,9 +128,14 @@ func _process(_delta: float) -> void:
 		sprite.z_index = 2
 	else:
 		sprite.z_index = 0
+	if just_placed:
+		await get_tree().create_timer(1)
 	if Input.is_action_just_released("interact") && mouse_touching:
 		popup.show()
 		player.popup_open = true
+	if Input.is_action_just_pressed("exit_ui"):
+		popup.hide()
+		player.popup_open = false
 
 
 func _on_button_pressed() -> void:

@@ -76,9 +76,9 @@ color = Color(0.129412, 0.14902, 0.180392, 0.403922)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 10
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/MarginContainer/MarginContainer"]
@@ -189,4 +189,5 @@ texture = ExtResource("2_16cmv")
 
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
 [connection signal="change_tile" from="Player" to="TileMap" method="_on_player_change_tile"]
+[connection signal="clear_slot" from="Player" to="." method="_on_player_clear_slot"]
 [connection signal="get_tile_data" from="Player" to="." method="_on_player_get_tile_data"]

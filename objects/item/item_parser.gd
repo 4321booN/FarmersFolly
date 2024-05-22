@@ -111,6 +111,9 @@ var placeables_ids: Dictionary = {
 	"stone_oven" : 6
 }
 
+func get_item_texture(item: String) -> Texture2D:
+	return textures[item]
+
 func get_placeable_id(item: String) -> int:
 	return placeables_ids[item]
 

@@ -33,6 +33,7 @@ var c_hbar_slot: Dictionary = {
 }
 signal get_tile_data
 signal change_tile
+signal clear_slot
 
 
 func _ready() -> void:
@@ -42,7 +43,6 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
-	print(inventory)
 
 	move_and_slide()
 	remove_0stacks()
@@ -105,15 +105,13 @@ func _input(event) -> void:
 						emit_signal("change_tile", Vector2i(0,0), 1)
 						break
 		elif event.is_action_pressed("interact"):
-			print("interact action")
 			for j: int in len(nothing):
 				for k: int in len(interacables):
 					if at_mouse_tile_id == nothing[j] and at_mouse_tile_id != interacables[k] and not popup_open:
-						print("tile in valid place state")
 						if c_hbar_slot["item"]:
 							if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
-								print("placing item")
 								remove_inventory_item(c_hbar_slot["item"]["item"],c_hbar_slot["item"]["count"])
+								emit_signal("clear_slot", c_hbar_slot["slot"])
 								emit_signal("change_tile", Vector2i(0,0), 0, ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
 								break
 
@@ -144,7 +142,6 @@ func add_inventory_item(item: String, count: int) -> void:
 func remove_inventory_item(item: String, count: int) -> void:
 	for i: int in len(inventory):
 		if inventory[i]['item'] == item && inventory[i]['count'] > 0:
-			print("removing item: ","{item: ",item,", count: ", str(count),"}")
 			inventory[i]['count'] -= count
 
 

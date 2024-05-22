@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 	for i: int in len(player.hotbar):
 		if i < 10:
 			if i == player.c_hbar_slot["slot"]:
-				hotbar_slots[i].color_rect.color = Color("B4C5E4")
+				hotbar_slots[i].color_rect.color = Color("8E98B4")
 			else:
 				hotbar_slots[i].color_rect.color = Color("433f53")
 			hotbar_slots[i].texture_rect.texture = ItemParser.textures[player.hotbar[i].item]
@@ -52,3 +52,9 @@ func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:
 		else:
 			tile_id = -1
 			emit_signal("at_mouse_tile_id", tile_id)
+
+
+func _on_player_clear_slot(slot):
+	hotbar_slots[slot].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
+	hotbar_slots[slot].count_label.text = ""
+	hotbar_slots[slot].color_rect.color = Color("433f53")
