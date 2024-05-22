@@ -21,10 +21,16 @@ extends CharacterBody2D
 @export var at_mouse_tile_id: int
 var tile_pos: Vector2i
 var popup_open: bool = false
-var interacables: Array = [2, 3]
-var breakables: Array = [2, 3]
-var nothing: Array = [-1, 0]
+var interacables: Array = [4, 5]
+var breakables: Array = [4, 5]
+var nothing: Array = [1]
 var hotbar: Array = []
+var c_hbar_slot: Dictionary = {
+	"slot" : 0,
+	"item" : {
+		
+	}
+}
 signal get_tile_data
 signal change_tile
 
@@ -36,6 +42,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
+	print(inventory)
 
 	move_and_slide()
 	remove_0stacks()
@@ -68,6 +75,18 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity[1] = 0
 
+	if not popup_open:
+		if Input.is_action_just_released("scroll_u"):
+			c_hbar_slot["slot"] += 1
+		elif Input.is_action_just_released("scroll_d"):
+			c_hbar_slot["slot"] -= 1
+		if c_hbar_slot["slot"] < 0:
+			c_hbar_slot["slot"] = hotbar.size() - 1
+		elif c_hbar_slot["slot"] > hotbar.size() - 1:
+			c_hbar_slot["slot"] = 0
+	if hotbar.size() > 0:
+		c_hbar_slot["item"] = hotbar[c_hbar_slot['slot']]
+
 	hotbar.clear()
 	for i: int in inventory.size():
 		if ItemParser.is_item_tool(inventory[i]["item"]) or ItemParser.is_item_placeable(inventory[i]["item"]):
@@ -79,18 +98,24 @@ func _input(event) -> void:
 		if event.is_action_released("break"):
 			for i: int in len(breakables):
 				for j: int in len(interacables):
-					if at_mouse_tile_id == breakables[i] and not popup_open:
-						if at_mouse_tile_id == interacables[j]:
-							emit_signal("change_tile", Vector2i(1,0), 1)
-							break
-						else:
-							emit_signal("change_tile", Vector2i(0,0), 1)
-							break
+					if at_mouse_tile_id == breakables[i] and not popup_open and at_mouse_tile_id == interacables[j]:
+						emit_signal("change_tile", Vector2i(1,0), 1)
+						break
+					else:
+						emit_signal("change_tile", Vector2i(0,0), 1)
+						break
 		elif event.is_action_pressed("interact"):
+			print("interact action")
 			for j: int in len(nothing):
 				for k: int in len(interacables):
 					if at_mouse_tile_id == nothing[j] and at_mouse_tile_id != interacables[k] and not popup_open:
-						emit_signal("change_tile", Vector2i(1,0), 1)
+						print("tile in valid place state")
+						if c_hbar_slot["item"]:
+							if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
+								print("placing item")
+								remove_inventory_item(c_hbar_slot["item"]["item"],c_hbar_slot["item"]["count"])
+								emit_signal("change_tile", Vector2i(0,0), 0, ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
+								break
 
 
 func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:
@@ -119,6 +144,7 @@ func add_inventory_item(item: String, count: int) -> void:
 func remove_inventory_item(item: String, count: int) -> void:
 	for i: int in len(inventory):
 		if inventory[i]['item'] == item && inventory[i]['count'] > 0:
+			print("removing item: ","{item: ",item,", count: ", str(count),"}")
 			inventory[i]['count'] -= count
 
 

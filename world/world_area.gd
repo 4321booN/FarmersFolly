@@ -28,6 +28,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	for i: int in len(player.hotbar):
 		if i < 10:
+			if i == player.c_hbar_slot["slot"]:
+				hotbar_slots[i].color_rect.color = Color("B4C5E4")
+			else:
+				hotbar_slots[i].color_rect.color = Color("433f53")
 			hotbar_slots[i].texture_rect.texture = ItemParser.textures[player.hotbar[i].item]
 			hotbar_slots[i].count_label.text = str(player.hotbar[i].count)
 

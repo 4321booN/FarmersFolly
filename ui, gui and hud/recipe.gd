@@ -15,6 +15,7 @@ extends Control
 @onready var ingredient_texture4: TextureRect = $ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2/IngredientTexture
 @onready var ingredient_label5: Label = $ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer3/IngredientLabel
 @onready var ingredient_texture5: TextureRect = $ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer3/IngredientTexture
+var delay: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,12 +32,14 @@ func _on_craft_button_pressed() -> void:
 		var is_crafted: bool
 		#      is_item_tool(        this_recipe's_item                         )
 		if not ItemParser.tools.has(ItemParser.names.find_key(result_label.text)):
+			await get_tree().create_timer(delay).timeout
 			player.add_inventory_item(ItemParser.names.find_key(result_label.text), 1)
 			is_crafted = true
 		elif ItemParser.tools.has(ItemParser.names.find_key(result_label.text)):
 			if player.inventory_has_item(ItemParser.names.find_key(result_label.text), 0):
 				is_crafted = false
 			else:
+				await get_tree().create_timer(delay).timeout
 				player.add_inventory_item(ItemParser.names.find_key(result_label.text), 1)
 				is_crafted = true
 		if is_crafted:

@@ -31,6 +31,7 @@ var textures: Dictionary = {
 	'stick' : ResourceLoader.load('res://objects/item/stick.png'),
 	'stone' : ResourceLoader.load('res://objects/item/stone.png'),
 	'stone_axe' : ResourceLoader.load('res://objects/item/stone_axe.png'),
+	"stone_oven" : ResourceLoader.load("res://objects/item/stone_oven.png"),
 	'stone_pickaxe' : ResourceLoader.load('res://objects/item/stone_pickaxe.png'),
 	'stone_spear' : ResourceLoader.load('res://objects/item/stone_spear.png'),
 	'string' : ResourceLoader.load('res://objects/item/string.png'),
@@ -67,6 +68,7 @@ var names: Dictionary = {
   "stick": "Stick",
   "stone": "Stone",
   "stone_axe": "Stone Axe",
+  "stone_oven": "Stone Oven",
   "stone_pickaxe": "Stone Pickaxe",
   "stone_spear": "Stone Spear",
   "string": "String",
@@ -100,8 +102,17 @@ var tools: Array = [
 ]
 
 var placeables: Array = [
-	"workbench"
+	"workbench",
+	"stone_oven"
 ]
+
+var placeables_ids: Dictionary = {
+	"workbench" : 4,
+	"stone_oven" : 6
+}
+
+func get_placeable_id(item: String) -> int:
+	return placeables_ids[item]
 
 
 func is_item_placeable(item: String) -> bool:

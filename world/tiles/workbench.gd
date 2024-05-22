@@ -23,6 +23,7 @@ var recipes: Array = [
 				"count" : 2
 			}
 		],
+		"delay" : 0,
 		"result" : "stone_pickaxe"
 	},
 	{
@@ -32,6 +33,7 @@ var recipes: Array = [
 				"count" : 2
 			}
 		],
+		"delay" : 0,
 		"result" : "string"
 	},
 	{
@@ -49,6 +51,7 @@ var recipes: Array = [
 				"count" : 1
 			}
 		],
+		"delay" : 0,
 		"result" : "stone_axe"
 	},
 	{
@@ -62,7 +65,22 @@ var recipes: Array = [
 				"count" : 1
 			}
 		],
+		"delay" : 0,
 		"result" : "workbench"
+	},
+	{
+		"ingredients" : [
+			{
+				"item" : "stone",
+				"count" : 8
+			},
+			{
+				"item" : "clay",
+				"count" : 2
+			}
+		],
+		"delay" : 0,
+		"result" : "stone_oven"
 	},
 ]
 var mouse_touching: bool = false
@@ -81,21 +99,27 @@ func _ready() -> void:
 			if j == 0:
 				recipe_container.get_child(i).ingredient_texture0.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
 				recipe_container.get_child(i).ingredient_label0.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 1:
 				recipe_container.get_child(i).ingredient_texture1.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
 				recipe_container.get_child(i).ingredient_label1.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 2:
 				recipe_container.get_child(i).ingredient_texture2.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
 				recipe_container.get_child(i).ingredient_label2.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 3:
 				recipe_container.get_child(i).ingredient_texture3.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
 				recipe_container.get_child(i).ingredient_label3.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 4:
 				recipe_container.get_child(i).ingredient_texture4.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
 				recipe_container.get_child(i).ingredient_label4.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 5:
 				recipe_container.get_child(i).ingredient_texture5.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
 				recipe_container.get_child(i).ingredient_label5.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).delay = recipes[i]["delay"]
 
 
 func _process(_delta: float) -> void:
