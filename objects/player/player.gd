@@ -41,11 +41,27 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+# WORLD RELATED CODE
+
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
 
+	if Input.is_action_just_released("break"):
+		if breakables.has(at_mouse_tile_id) and interacables.has(at_mouse_tile_id) and not popup_open:
+			emit_signal("change_tile", Vector2i(1,0), 1, 0)
+		else:
+			emit_signal("change_tile", Vector2i(0,0), 1, 0)
+	elif Input.is_action_pressed("interact"):
+		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open:
+			if c_hbar_slot["item"]:
+				if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
+					remove_inventory_item(c_hbar_slot["item"]["item"],c_hbar_slot["item"]["count"])
+					emit_signal("clear_slot", c_hbar_slot["slot"])
+					emit_signal("change_tile", Vector2i(0,0), 0, ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
+
+# MOVEMENT RELATED CODE
+
 	move_and_slide()
-	remove_0stacks()
 
 	if dir > 3:
 		dir = 3
@@ -75,6 +91,10 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity[1] = 0
 
+#INVENTORY RELATED CODE
+
+	remove_0stacks()
+
 	if not popup_open:
 		if Input.is_action_just_released("scroll_u"):
 			c_hbar_slot["slot"] += 1
@@ -93,29 +113,6 @@ func _physics_process(_delta: float) -> void:
 			hotbar.append(inventory[i])
 
 
-func _input(event) -> void:
-	if event is InputEventMouseButton:
-		if event.is_action_released("break"):
-			for i: int in len(breakables):
-				for j: int in len(interacables):
-					if at_mouse_tile_id == breakables[i] and not popup_open and at_mouse_tile_id == interacables[j]:
-						emit_signal("change_tile", Vector2i(1,0), 1)
-						break
-					else:
-						emit_signal("change_tile", Vector2i(0,0), 1)
-						break
-		elif event.is_action_pressed("interact"):
-			for j: int in len(nothing):
-				for k: int in len(interacables):
-					if at_mouse_tile_id == nothing[j] and at_mouse_tile_id != interacables[k] and not popup_open:
-						if c_hbar_slot["item"]:
-							if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
-								remove_inventory_item(c_hbar_slot["item"]["item"],c_hbar_slot["item"]["count"])
-								emit_signal("clear_slot", c_hbar_slot["slot"])
-								emit_signal("change_tile", Vector2i(0,0), 0, ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
-								break
-
-
 func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:
 	at_mouse_tile_id = tile_id
 
@@ -125,6 +122,7 @@ func remove_0stacks() -> void:
 		if i < len(inventory):
 			if inventory[i]["count"] <= 0:
 				inventory.remove_at(i)
+
 
 func add_inventory_item(item: String, count: int) -> void:
 	var found: bool = false
