@@ -26,6 +26,8 @@ func _process(_delta: float) -> void:
 	if grown && Input.is_action_just_released("interact") or Input.is_action_just_released("break") && mouse_toutching:
 		player.add_inventory_item("stick", randi_range(3, 6))
 		anim = 0
+	elif Input.is_action_just_pressed("break"):
+		player.add_inventory_item("stick", randi_range(0, 2))
 
 
 func _on_area_2d_mouse_entered() -> void:

@@ -47,6 +47,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_ctfg2")
 sources/1 = SubResource("TileSetAtlasSource_4h72b")
 
 [node name="WorldArea" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_faidl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -176,8 +177,9 @@ texture = ExtResource("2_16cmv")
 [node name="Sprite2D3" type="TextureRect" parent="Node2D"]
 z_index = -4096
 offset_left = -1376.0
+offset_top = -4.0
 offset_right = 928.0
-offset_bottom = 1536.0
+offset_bottom = 1532.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D4" type="TextureRect" parent="Node2D"]

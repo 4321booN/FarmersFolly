@@ -25,6 +25,7 @@ var interacables: Array = [4, 5]
 var breakables: Array = [4, 5]
 var nothing: Array = [1]
 var hotbar: Array = []
+var reach: float = 5.00
 var c_hbar_slot: Dictionary = {
 	"slot" : 0,
 	"item" : {
@@ -52,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			emit_signal("change_tile", Vector2i(0,0), 1, 0)
 	elif Input.is_action_pressed("interact"):
-		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open:
+		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			if c_hbar_slot["item"]:
 				if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
 					remove_inventory_item(c_hbar_slot["item"]["item"],c_hbar_slot["item"]["count"])
