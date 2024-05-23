@@ -25,7 +25,7 @@ var interacables: Array = [4, 5]
 var breakables: Array = [4, 5]
 var nothing: Array = [1]
 var hotbar: Array = []
-var reach: float = 5.00
+var reach: float = 320.00
 var c_hbar_slot: Dictionary = {
 	"slot" : 0,
 	"item" : {
