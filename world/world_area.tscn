@@ -159,37 +159,43 @@ metadata/_edit_group_ = true
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -4096
 z_as_relative = false
+position = Vector2(-1136, -648)
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="TextureRect" parent="Node2D"]
 z_index = -4096
-offset_left = -1376.0
-offset_top = -1536.0
-offset_right = 928.0
+offset_left = -1152.0
+offset_top = -768.0
+offset_right = -1152.0
+offset_bottom = -768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D2" type="TextureRect" parent="Node2D"]
 z_index = -4096
-offset_left = 224.0
-offset_top = -1536.0
-offset_right = 2528.0
+offset_left = 1152.0
+offset_top = -768.0
+offset_right = 1152.0
+offset_bottom = -768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D3" type="TextureRect" parent="Node2D"]
 z_index = -4096
-offset_left = -1376.0
-offset_top = -4.0
-offset_right = 928.0
-offset_bottom = 1532.0
+offset_left = -1152.0
+offset_top = 768.0
+offset_right = -1152.0
+offset_bottom = 768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D4" type="TextureRect" parent="Node2D"]
 z_index = -4096
-offset_left = 224.0
-offset_right = 2528.0
-offset_bottom = 1536.0
+offset_left = 1152.0
+offset_top = 768.0
+offset_right = 1152.0
+offset_bottom = 768.0
 texture = ExtResource("2_16cmv")
 
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
+[connection signal="change_tile" from="." to="TileMap" method="_on_world_area_change_tile"]
 [connection signal="change_tile" from="Player" to="TileMap" method="_on_player_change_tile"]
 [connection signal="clear_slot" from="Player" to="." method="_on_player_clear_slot"]
 [connection signal="get_tile_data" from="Player" to="." method="_on_player_get_tile_data"]
