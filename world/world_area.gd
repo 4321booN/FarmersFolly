@@ -55,10 +55,8 @@ func place_random_tile():
 			break
 		if get_tile_data(random_pos, true) != player.nothing[i]:
 			valid = false
-	# makes it so that there's a 12% chance of a tile actually being placed
-	if rng.randi_range(0, 10000) == 1:
-		valid = false
-	if valid:
+	# makes it so that there's a 0.015% chance of a tile actually being placed
+	if valid && rng.randi_range(0, 10000) <= 15:
 		#change tile:          at: random_pos, atlas: 0, tile: 0,0 (because it's a scenes collection),
 		#                      alt_tile: 5
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 5)
