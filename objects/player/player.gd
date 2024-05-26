@@ -14,6 +14,14 @@ extends CharacterBody2D
 	{
 		"item" : "stick",
 		"count" : 16
+	},
+	{
+		"item" : "clay",
+		"count" : 2
+	},
+	{
+		"item" : "iron_ore",
+		"count" : 1
 	}
 ]
 @export var speed: float = 280
@@ -21,8 +29,8 @@ extends CharacterBody2D
 @export var at_mouse_tile_id: int
 var tile_pos: Vector2i
 var popup_open: bool = false
-var interacables: Array = [4, 5]
-var breakables: Array = [4, 5]
+var interacables: Array = [4, 5, 6]
+var breakables: Array = [4, 5, 6]
 var nothing: Array = [1]
 var hotbar: Array = []
 var reach: float = 320.00

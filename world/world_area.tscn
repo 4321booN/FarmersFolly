@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=14 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
 [ext_resource type="Texture2D" uid="uid://cyhow0knentc7" path="res://world/world_area_bg.png" id="2_16cmv"]
@@ -8,12 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dwmdigbi06eo3" path="res://objects/player/player.tscn" id="2_ucstd"]
 [ext_resource type="Script" path="res://world/tile_map.gd" id="3_vwxbq"]
 [ext_resource type="PackedScene" uid="uid://cakmbb1eg1wlc" path="res://world/tiles/tree.tscn" id="4_cp510"]
+[ext_resource type="PackedScene" uid="uid://bgser8v0xr656" path="res://world/tiles/stone_oven.tscn" id="6_olgxa"]
 [ext_resource type="Texture2D" uid="uid://doqc534p52ndg" path="res://world/tiles/world_tiles.png" id="6_p3lyl"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ctfg2"]
 resource_name = "interactables"
 scenes/4/scene = ExtResource("2_lrc43")
 scenes/5/scene = ExtResource("4_cp510")
+scenes/6/scene = ExtResource("6_olgxa")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4h72b"]
 texture = ExtResource("6_p3lyl")
