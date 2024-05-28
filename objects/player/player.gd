@@ -57,16 +57,14 @@ func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_just_released("break"):
 		if breakables.has(at_mouse_tile_id) and interacables.has(at_mouse_tile_id) and not popup_open:
-			emit_signal("change_tile", Vector2i(1,0), 1, 0)
-		else:
-			emit_signal("change_tile", Vector2i(0,0), 1, 0)
+			emit_signal("change_tile", 1, Vector2i(1,0), 0)
 	elif Input.is_action_pressed("interact"):
 		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			if c_hbar_slot["item"]:
 				if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
 					remove_inventory_item(c_hbar_slot["item"]["item"],c_hbar_slot["item"]["count"])
 					emit_signal("clear_slot", c_hbar_slot["slot"])
-					emit_signal("change_tile", Vector2i(0,0), 0, ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
+					emit_signal("change_tile", 0, Vector2i(0,0), ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
 
 # MOVEMENT RELATED CODE
 
