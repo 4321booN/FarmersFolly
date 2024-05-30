@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv8rkto7fqxoq"]
+
+[ext_resource type="Texture2D" uid="uid://bcdt4dxompo1j" path="res://ui, gui and hud/cursor_hud.png" id="1_3umrd"]
+[ext_resource type="Script" path="res://ui, gui and hud/cursor_hud.gd" id="2_8ll31"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l54pw"]
+atlas = ExtResource("1_3umrd")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvdxt"]
+atlas = ExtResource("1_3umrd")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yp57m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l54pw")
+}],
+"loop": true,
+"name": &"false",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvdxt")
+}],
+"loop": true,
+"name": &"true",
+"speed": 5.0
+}]
+
+[node name="CursorHUD" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(24, 24)
+scale = Vector2(4.8, 4.8)
+sprite_frames = SubResource("SpriteFrames_yp57m")
+animation = &"true"
+script = ExtResource("2_8ll31")

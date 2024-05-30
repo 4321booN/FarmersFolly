@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=15 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
 [ext_resource type="Texture2D" uid="uid://cyhow0knentc7" path="res://world/world_area_bg.png" id="2_16cmv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cakmbb1eg1wlc" path="res://world/tiles/tree.tscn" id="4_cp510"]
 [ext_resource type="PackedScene" uid="uid://bgser8v0xr656" path="res://world/tiles/stone_oven.tscn" id="6_olgxa"]
 [ext_resource type="Texture2D" uid="uid://doqc534p52ndg" path="res://world/tiles/world_tiles.png" id="6_p3lyl"]
+[ext_resource type="PackedScene" uid="uid://dv8rkto7fqxoq" path="res://ui, gui and hud/cursor_hud.tscn" id="11_6jifv"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ctfg2"]
 resource_name = "interactables"
@@ -195,6 +196,8 @@ offset_top = 768.0
 offset_right = 1152.0
 offset_bottom = 768.0
 texture = ExtResource("2_16cmv")
+
+[node name="CursorHUD" parent="." instance=ExtResource("11_6jifv")]
 
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
 [connection signal="change_tile" from="." to="TileMap" method="_on_world_area_change_tile"]

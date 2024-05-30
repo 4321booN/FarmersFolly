@@ -56,8 +56,12 @@ func _physics_process(_delta: float) -> void:
 	emit_signal("get_tile_data", tile_pos)
 
 	if Input.is_action_just_released("break"):
-		if breakables.has(at_mouse_tile_id) and interacables.has(at_mouse_tile_id) and not popup_open:
+		if breakables.has(at_mouse_tile_id) and interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			emit_signal("change_tile", 1, Vector2i(1,0), 0)
+			print("breaking tile: ", str(at_mouse_tile_id))
+			if ItemParser.is_tile_placeable_item(at_mouse_tile_id):
+				print("adding item: ", ItemParser.get_tile_item(at_mouse_tile_id))
+				add_inventory_item(ItemParser.get_tile_item(at_mouse_tile_id), 1)
 	elif Input.is_action_pressed("interact"):
 		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			if c_hbar_slot["item"]:

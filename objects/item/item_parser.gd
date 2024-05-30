@@ -120,6 +120,18 @@ func get_placeable_id(item: String) -> int:
 	return placeables_ids[item]
 
 
+func is_tile_placeable_item(tile: int) -> bool:
+	print("checking for ", str(tile), " in placeable ids...\n", str(placeables_ids.find_key(tile)))
+	if placeables_ids.find_key(tile):
+		return true
+	else:
+		return false
+
+
+func get_tile_item(tile: int) -> String:
+	return placeables_ids.find_key(tile)
+
+
 func is_item_placeable(item: String) -> bool:
 	return placeables.has(item)
 
