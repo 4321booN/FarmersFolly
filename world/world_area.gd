@@ -22,10 +22,11 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 ]
 @onready var player: CharacterBody2D = $Player
 @onready var tile_map: TileMap = $TileMap
+@onready var player_inventory = $InventoryPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
 
 
 func _ready() -> void:
-	pass
+	player_inventory.player = player
 
 func _process(_delta: float) -> void:
 	for i: int in len(player.hotbar):

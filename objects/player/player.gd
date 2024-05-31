@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @onready var tilemap: TileMap = $"../TileMap"
+@onready var inventory_popup: Window = $"../InventoryPopup"
 @onready var inventory: Array = [
 	{
 		"item" : "stone",
@@ -122,6 +123,14 @@ func _physics_process(_delta: float) -> void:
 	for i: int in inventory.size():
 		if ItemParser.is_item_tool(inventory[i]["item"]) or ItemParser.is_item_placeable(inventory[i]["item"]):
 			hotbar.append(inventory[i])
+
+	if Input.is_action_just_released("open_inventory"):
+		inventory_popup.show()
+		popup_open = true
+
+	if Input.is_action_just_pressed("exit_ui"):
+		inventory_popup.hide()
+		popup_open = false
 
 
 func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:

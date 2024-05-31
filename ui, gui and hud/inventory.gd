@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var player: CharacterBody2D = $"../../../../../../../../Player"
+@onready var player: CharacterBody2D
 @onready var vboxcontainer: VBoxContainer = %VBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

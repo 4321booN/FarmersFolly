@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=22 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
 [ext_resource type="Texture2D" uid="uid://cyhow0knentc7" path="res://world/world_area_bg.png" id="2_16cmv"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bgser8v0xr656" path="res://world/tiles/stone_oven.tscn" id="6_olgxa"]
 [ext_resource type="Texture2D" uid="uid://doqc534p52ndg" path="res://world/tiles/world_tiles.png" id="6_p3lyl"]
 [ext_resource type="PackedScene" uid="uid://dv8rkto7fqxoq" path="res://ui, gui and hud/cursor_hud.tscn" id="11_6jifv"]
+[ext_resource type="PackedScene" uid="uid://bnbe18xxkv8ty" path="res://ui, gui and hud/inventory.tscn" id="12_iehis"]
+[ext_resource type="FontFile" uid="uid://dxhj70dmp2mf7" path="res://fonts and styles/GameIcons.ttf" id="13_qqu58"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ctfg2"]
 resource_name = "interactables"
@@ -48,6 +50,18 @@ custom_data_layer_0/name = "tile"
 custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetScenesCollectionSource_ctfg2")
 sources/1 = SubResource("TileSetAtlasSource_4h72b")
+
+[sub_resource type="ImageTexture" id="ImageTexture_51ilk"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_d344s"]
+
+[sub_resource type="Theme" id="Theme_7ygww"]
+Window/icons/close = SubResource("ImageTexture_51ilk")
+Window/icons/close_pressed = SubResource("ImageTexture_d344s")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ecpon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ph40s"]
 
 [node name="WorldArea" type="Node2D"]
 texture_filter = 1
@@ -166,7 +180,7 @@ position = Vector2(-1136, -648)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="TextureRect" parent="Node2D"]
-z_index = -4096
+z_index = -4095
 offset_left = -1152.0
 offset_top = -768.0
 offset_right = -1152.0
@@ -174,7 +188,7 @@ offset_bottom = -768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D2" type="TextureRect" parent="Node2D"]
-z_index = -4096
+z_index = -4095
 offset_left = 1152.0
 offset_top = -768.0
 offset_right = 1152.0
@@ -182,7 +196,7 @@ offset_bottom = -768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D3" type="TextureRect" parent="Node2D"]
-z_index = -4096
+z_index = -4095
 offset_left = -1152.0
 offset_top = 768.0
 offset_right = -1152.0
@@ -190,7 +204,7 @@ offset_bottom = 768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D4" type="TextureRect" parent="Node2D"]
-z_index = -4096
+z_index = -4095
 offset_left = 1152.0
 offset_top = 768.0
 offset_right = 1152.0
@@ -198,6 +212,75 @@ offset_bottom = 768.0
 texture = ExtResource("2_16cmv")
 
 [node name="CursorHUD" parent="." instance=ExtResource("11_6jifv")]
+
+[node name="InventoryPopup" type="Window" parent="."]
+initial_position = 2
+size = Vector2i(1100, 553)
+visible = false
+unresizable = true
+borderless = true
+always_on_top = true
+theme = SubResource("Theme_7ygww")
+
+[node name="Control" type="Control" parent="InventoryPopup"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lkcfr")
+
+[node name="ColorRect" type="ColorRect" parent="InventoryPopup/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.14902, 0.180392, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryPopup/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryPopup/Control/HBoxContainer"]
+custom_minimum_size = Vector2(908, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryPopup/Control/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayerInventory" parent="InventoryPopup/Control/HBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("12_iehis")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="InventoryPopup/Control/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 513
+
+[node name="Button" type="Button" parent="InventoryPopup/Control/HBoxContainer/MarginContainer2"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.713726, 0.0901961, 0.164706, 1)
+theme_override_colors/font_pressed_color = Color(0.713726, 0.0901961, 0.164706, 1)
+theme_override_colors/font_hover_color = Color(0.905882, 0.113725, 0.211765, 1)
+theme_override_colors/font_focus_color = Color(0.905882, 0.113725, 0.211765, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("13_qqu58")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ecpon")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ph40s")
+text = "H"
 
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
 [connection signal="change_tile" from="." to="TileMap" method="_on_world_area_change_tile"]

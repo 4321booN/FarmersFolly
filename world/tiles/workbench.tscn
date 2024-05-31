@@ -13,13 +13,13 @@ size = Vector2(64, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ywq3x"]
 size = Vector2(64, 96)
 
-[sub_resource type="ImageTexture" id="ImageTexture_20mdf"]
+[sub_resource type="ImageTexture" id="ImageTexture_fdr8g"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_6hrrs"]
+[sub_resource type="ImageTexture" id="ImageTexture_ca2am"]
 
 [sub_resource type="Theme" id="Theme_gv67m"]
-Window/icons/close = SubResource("ImageTexture_20mdf")
-Window/icons/close_pressed = SubResource("ImageTexture_6hrrs")
+Window/icons/close = SubResource("ImageTexture_fdr8g")
+Window/icons/close_pressed = SubResource("ImageTexture_ca2am")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3exr"]
 
