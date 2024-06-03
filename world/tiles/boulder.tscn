@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp5yxhpxkwroe"]
+
+[ext_resource type="Script" path="res://world/tiles/resource_tile.gd" id="1_oclru"]
+[ext_resource type="Texture2D" uid="uid://ijyvsr8l1ypa" path="res://world/tiles/tile_grass.png" id="2_aeaq7"]
+[ext_resource type="Texture2D" uid="uid://e08q2007jobw" path="res://world/tiles/boulder.png" id="3_8cfw1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpfn7"]
+
+[node name="Boulder" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_oclru")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_aeaq7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 7)
+scale = Vector2(4.57143, 4.57143)
+texture = ExtResource("3_8cfw1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xpfn7")
