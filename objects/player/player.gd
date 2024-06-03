@@ -31,9 +31,9 @@ extends CharacterBody2D
 var rng = RandomNumberGenerator.new()
 var tile_pos: Vector2i
 var popup_open: bool = false
-var interacables: Array = [4, 5, 6, 7]
-var breakables: Array = [4, 5, 6, 7]
-var resource_tiles: Array = [5, 7]
+var interacables: Array = [4, 5, 6, 7, 8]
+var breakables: Array = [4, 5, 6, 7, 8]
+var resource_tiles: Array = [5, 7, 8]
 var nothing: Array = [1]
 var hotbar: Array = []
 var reach: float = 320.00
@@ -129,6 +129,8 @@ func _physics_process(_delta: float) -> void:
 					add_inventory_item("stick", rng.randi_range(4, 8))
 				elif at_mouse_tile_id == resource_tiles[1]:
 					add_inventory_item("iron_ore", rng.randi_range(1, 2))
+				elif at_mouse_tile_id == resource_tiles[2]:
+					add_inventory_item("stone", rng.randi_range(2, 3))
 	elif Input.is_action_pressed("interact"):
 		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			if c_hbar_slot["item"]:
