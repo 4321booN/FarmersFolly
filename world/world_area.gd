@@ -29,7 +29,7 @@ func _ready() -> void:
 	player_inventory.player = player
 
 func _process(_delta: float) -> void:
-	for i: int in len(player.hotbar):
+	for i: int in player.hotbar.size():
 		if i < 10:
 			if i == player.c_hbar_slot["slot"]:
 				hotbar_slots[i].color_rect.color = Color("8E98B4")
@@ -37,6 +37,15 @@ func _process(_delta: float) -> void:
 				hotbar_slots[i].color_rect.color = Color("433f53")
 			hotbar_slots[i].texture_rect.texture = ItemParser.textures[player.hotbar[i].item]
 			hotbar_slots[i].count_label.text = str(player.hotbar[i].count)
+			if str_to_var(hotbar_slots[i].count_label.text) == 0:
+				hotbar_slots[i].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
+				hotbar_slots[i].count_label.text = ""
+				hotbar_slots[i].color_rect.color = Color("433f53")
+	for i: int in hotbar_slots.size():
+		if not player.hotbar.size() - 1 >= i:
+			hotbar_slots[i].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
+			hotbar_slots[i].count_label.text = ""
+			hotbar_slots[i].color_rect.color = Color("433f53")
 	place_random_tile()
 
 
@@ -46,6 +55,7 @@ func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:
 
 
 func place_random_tile():
+	rng.randomize()
 	#   generates a random position for a tile to spawn at
 	var random_pos: Vector2i = Vector2i(rng.randi_range(-7,6),rng.randi_range(-7,6))
 	var valid: bool
@@ -56,11 +66,13 @@ func place_random_tile():
 			break
 		if get_tile_data(random_pos, true) != player.nothing[i]:
 			valid = false
-	# makes it so that there's a 0.015% chance of a tile actually being placed
-	if valid && rng.randi_range(0, 10000) <= 15:
+	# makes it so that there's a 0.005% chance of a tile actually being placed
+	if valid && rng.randi_range(0, 10000) <= 7:
 		#change tile:          at: random_pos, atlas: 0, tile: 0,0 (because it's a scenes collection),
 		#                      alt_tile: 5
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 5)
+	if valid && rng.randi_range(0, 10000) <= 7:
+		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 7)
 
 
 func get_tile_data(retrival_pos: Vector2i, local_to_map: bool) -> int:
@@ -83,9 +95,3 @@ func get_tile_data(retrival_pos: Vector2i, local_to_map: bool) -> int:
 		else:
 			tile_id = -1
 			return tile_id
-
-
-func _on_player_clear_slot(slot):
-	hotbar_slots[slot].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
-	hotbar_slots[slot].count_label.text = ""
-	hotbar_slots[slot].color_rect.color = Color("433f53")

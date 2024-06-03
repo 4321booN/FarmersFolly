@@ -28,10 +28,12 @@ extends CharacterBody2D
 @export var speed: float = 280
 @export var dir: int = 0
 @export var at_mouse_tile_id: int
+var rng = RandomNumberGenerator.new()
 var tile_pos: Vector2i
 var popup_open: bool = false
-var interacables: Array = [4, 5, 6]
-var breakables: Array = [4, 5, 6]
+var interacables: Array = [4, 5, 6, 7]
+var breakables: Array = [4, 5, 6, 7]
+var resource_tiles: Array = [5, 7]
 var nothing: Array = [1]
 var hotbar: Array = []
 var reach: float = 320.00
@@ -43,7 +45,6 @@ var c_hbar_slot: Dictionary = {
 }
 signal get_tile_data
 signal change_tile
-signal clear_slot
 
 
 func _ready() -> void:
@@ -51,25 +52,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-# WORLD RELATED CODE
-
-	tile_pos = Vector2i(get_global_mouse_position())
-	emit_signal("get_tile_data", tile_pos)
-
-	if Input.is_action_just_released("break"):
-		if breakables.has(at_mouse_tile_id) and interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
-			emit_signal("change_tile", 1, Vector2i(1,0), 0)
-			print("breaking tile: ", str(at_mouse_tile_id))
-			if ItemParser.is_tile_placeable_item(at_mouse_tile_id):
-				print("adding item: ", ItemParser.get_tile_item(at_mouse_tile_id))
-				add_inventory_item(ItemParser.get_tile_item(at_mouse_tile_id), 1)
-	elif Input.is_action_pressed("interact"):
-		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
-			if c_hbar_slot["item"]:
-				if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
-					remove_inventory_item(c_hbar_slot["item"]["item"],c_hbar_slot["item"]["count"])
-					emit_signal("clear_slot", c_hbar_slot["slot"])
-					emit_signal("change_tile", 0, Vector2i(0,0), ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
 
 # MOVEMENT RELATED CODE
 
@@ -132,6 +114,30 @@ func _physics_process(_delta: float) -> void:
 		inventory_popup.hide()
 		popup_open = false
 
+# WORLD RELATED CODE
+
+	tile_pos = Vector2i(get_global_mouse_position())
+	emit_signal("get_tile_data", tile_pos)
+
+	if Input.is_action_just_released("break"):
+		if breakables.has(at_mouse_tile_id) and interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
+			emit_signal("change_tile", 1, Vector2i(1,0), 0)
+			if ItemParser.is_tile_placeable_item(at_mouse_tile_id):
+				add_inventory_item(ItemParser.get_tile_item(at_mouse_tile_id), 1)
+			elif resource_tiles.has(at_mouse_tile_id):
+				if at_mouse_tile_id == resource_tiles[0]:
+					add_inventory_item("stick", rng.randi_range(4, 8))
+				elif at_mouse_tile_id == resource_tiles[1]:
+					add_inventory_item("iron_ore", rng.randi_range(1, 2))
+	elif Input.is_action_pressed("interact"):
+		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
+			if c_hbar_slot["item"]:
+				if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
+					remove_inventory_item(c_hbar_slot["item"]["item"], 1)
+					emit_signal("change_tile", 0, Vector2i(0,0), ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
+					c_hbar_slot["item"] = {}
+
+# MORE INVENTORY RELATED CODE
 
 func _on_world_area_at_mouse_tile_id(tile_id: int) -> void:
 	at_mouse_tile_id = tile_id
@@ -142,6 +148,9 @@ func remove_0stacks() -> void:
 		if i < len(inventory):
 			if inventory[i]["count"] <= 0:
 				inventory.remove_at(i)
+	if c_hbar_slot["item"] != {}:
+		if c_hbar_slot["item"]["count"] == 0:
+			c_hbar_slot["item"] = {}
 
 
 func add_inventory_item(item: String, count: int) -> void:

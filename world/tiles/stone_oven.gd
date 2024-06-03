@@ -6,6 +6,8 @@ extends StaticBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player: CharacterBody2D = $"../../Player"
 @onready var recipe_container = $StoneOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RecipeContainer
+@onready var player_inventory = $StoneOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
+
 
 var recipes: Array = [
 	{
@@ -33,6 +35,7 @@ var just_placed: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player_inventory.player = player
 	for i: int in recipes.size():
 		var scene: PackedScene = load("res://ui, gui and hud/recipe.tscn")
 		var scene_instance = scene.instantiate()

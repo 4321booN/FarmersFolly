@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=24 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
 [ext_resource type="Texture2D" uid="uid://cyhow0knentc7" path="res://world/world_area_bg.png" id="2_16cmv"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cakmbb1eg1wlc" path="res://world/tiles/tree.tscn" id="4_cp510"]
 [ext_resource type="PackedScene" uid="uid://bgser8v0xr656" path="res://world/tiles/stone_oven.tscn" id="6_olgxa"]
 [ext_resource type="Texture2D" uid="uid://doqc534p52ndg" path="res://world/tiles/world_tiles.png" id="6_p3lyl"]
+[ext_resource type="PackedScene" uid="uid://difc05k4dlk7k" path="res://world/tiles/iron_ore.tscn" id="7_j24x0"]
 [ext_resource type="PackedScene" uid="uid://dv8rkto7fqxoq" path="res://ui, gui and hud/cursor_hud.tscn" id="11_6jifv"]
+[ext_resource type="Script" path="res://world/inventory_popup.gd" id="12_2x168"]
 [ext_resource type="PackedScene" uid="uid://bnbe18xxkv8ty" path="res://ui, gui and hud/inventory.tscn" id="12_iehis"]
 [ext_resource type="FontFile" uid="uid://dxhj70dmp2mf7" path="res://fonts and styles/GameIcons.ttf" id="13_qqu58"]
 
@@ -19,6 +21,7 @@ resource_name = "interactables"
 scenes/4/scene = ExtResource("2_lrc43")
 scenes/5/scene = ExtResource("4_cp510")
 scenes/6/scene = ExtResource("6_olgxa")
+scenes/7/scene = ExtResource("7_j24x0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4h72b"]
 texture = ExtResource("6_p3lyl")
@@ -172,6 +175,7 @@ unique_name_in_owner = true
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -4096
@@ -180,7 +184,7 @@ position = Vector2(-1136, -648)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="TextureRect" parent="Node2D"]
-z_index = -4095
+z_index = -4096
 offset_left = -1152.0
 offset_top = -768.0
 offset_right = -1152.0
@@ -188,7 +192,7 @@ offset_bottom = -768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D2" type="TextureRect" parent="Node2D"]
-z_index = -4095
+z_index = -4096
 offset_left = 1152.0
 offset_top = -768.0
 offset_right = 1152.0
@@ -196,7 +200,7 @@ offset_bottom = -768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D3" type="TextureRect" parent="Node2D"]
-z_index = -4095
+z_index = -4096
 offset_left = -1152.0
 offset_top = 768.0
 offset_right = -1152.0
@@ -204,7 +208,7 @@ offset_bottom = 768.0
 texture = ExtResource("2_16cmv")
 
 [node name="Sprite2D4" type="TextureRect" parent="Node2D"]
-z_index = -4095
+z_index = -4096
 offset_left = 1152.0
 offset_top = 768.0
 offset_right = 1152.0
@@ -221,6 +225,7 @@ unresizable = true
 borderless = true
 always_on_top = true
 theme = SubResource("Theme_7ygww")
+script = ExtResource("12_2x168")
 
 [node name="Control" type="Control" parent="InventoryPopup"]
 layout_mode = 3
@@ -285,5 +290,5 @@ text = "H"
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
 [connection signal="change_tile" from="." to="TileMap" method="_on_world_area_change_tile"]
 [connection signal="change_tile" from="Player" to="TileMap" method="_on_player_change_tile"]
-[connection signal="clear_slot" from="Player" to="." method="_on_player_clear_slot"]
 [connection signal="get_tile_data" from="Player" to="." method="_on_player_get_tile_data"]
+[connection signal="pressed" from="InventoryPopup/Control/HBoxContainer/MarginContainer2/Button" to="InventoryPopup" method="_on_button_pressed"]

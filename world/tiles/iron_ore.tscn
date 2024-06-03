@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://difc05k4dlk7k"]
+
+[ext_resource type="Script" path="res://world/tiles/resource_tile.gd" id="1_r7sqe"]
+[ext_resource type="Texture2D" uid="uid://con3s1qp66gtb" path="res://world/tiles/iron_ore.png" id="3_1tvnt"]
+[ext_resource type="Texture2D" uid="uid://ijyvsr8l1ypa" path="res://world/tiles/tile_grass.png" id="6_tqo6n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpfn7"]
+
+[node name="IronOre" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_r7sqe")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("6_tqo6n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 7)
+scale = Vector2(4.57143, 4.57143)
+texture = ExtResource("3_1tvnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xpfn7")

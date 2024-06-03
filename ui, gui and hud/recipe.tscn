@@ -167,4 +167,9 @@ label_settings = SubResource("LabelSettings_o1j83")
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 
+[node name="ProgressLabel" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Crafting..."
+
 [connection signal="pressed" from="ColorRect/HBoxContainer/VBoxContainer/HBoxContainer2/CraftButton" to="." method="_on_craft_button_pressed"]

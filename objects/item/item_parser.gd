@@ -121,7 +121,6 @@ func get_placeable_id(item: String) -> int:
 
 
 func is_tile_placeable_item(tile: int) -> bool:
-	print("checking for ", str(tile), " in placeable ids...\n", str(placeables_ids.find_key(tile)))
 	if placeables_ids.find_key(tile):
 		return true
 	else:
