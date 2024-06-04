@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cakmbb1eg1wlc"]
+[gd_scene load_steps=4 format=3 uid="uid://cakmbb1eg1wlc"]
 
 [ext_resource type="Script" path="res://world/tiles/resource_tile.gd" id="1_ia6dg"]
-[ext_resource type="Texture2D" uid="uid://ijyvsr8l1ypa" path="res://world/tiles/tile_grass.png" id="2_7c2ju"]
 [ext_resource type="Texture2D" uid="uid://cnk88xxkg62es" path="res://world/tiles/tree_3.png" id="6_8askg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2y7ht"]
@@ -10,9 +9,6 @@ radius = 9.0
 [node name="Tree" type="StaticBody2D"]
 texture_filter = 1
 script = ExtResource("1_ia6dg")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-texture = ExtResource("2_7c2ju")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.90735e-06, -32)

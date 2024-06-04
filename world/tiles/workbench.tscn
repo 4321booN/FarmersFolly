@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://h4r6gvdf4iee"]
+[gd_scene load_steps=13 format=3 uid="uid://h4r6gvdf4iee"]
 
 [ext_resource type="Script" path="res://world/tiles/workbench.gd" id="1_fosi6"]
-[ext_resource type="Texture2D" uid="uid://ijyvsr8l1ypa" path="res://world/tiles/tile_grass.png" id="2_oa31e"]
 [ext_resource type="Texture2D" uid="uid://cpygu7p2d2cqq" path="res://world/tiles/workbench.png" id="3_kofxt"]
 [ext_resource type="Theme" uid="uid://c4dqfbr034o6g" path="res://ui, gui and hud/theme.tres" id="4_6duky"]
 [ext_resource type="PackedScene" uid="uid://bnbe18xxkv8ty" path="res://ui, gui and hud/inventory.tscn" id="5_cq5as"]
@@ -33,10 +32,6 @@ script = ExtResource("1_fosi6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_4tbvb")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(0, 16)
-texture = ExtResource("2_oa31e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.90735e-06, 1.90735e-06)

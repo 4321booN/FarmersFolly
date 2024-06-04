@@ -6,8 +6,4 @@ extends StaticBody2D
 
 
 func _process(_delta: float) -> void:
-	if player.position.y + 32 < position.y:
-		sprite.z_index = 2
-	else:
-		sprite.z_index = 0
-
+	z_index = position.y - player.position.y

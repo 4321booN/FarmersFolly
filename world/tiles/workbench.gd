@@ -127,10 +127,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if player.position.y < position.y:
-		sprite.z_index = 2
-	else:
-		sprite.z_index = 0
+	z_index = position.y - player.position.y
 	if just_placed:
 		await get_tree().create_timer(1).timeout
 	if Input.is_action_just_released("interact") && mouse_touching:

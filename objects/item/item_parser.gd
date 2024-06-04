@@ -77,7 +77,7 @@ var names: Dictionary = {
   "workbench": "Workbench"
 }
 
-var tools: Array = [
+var tools: PackedStringArray = [
   "copper_axe",
   "copper_pickaxe",
   "copper_shovel",
@@ -103,7 +103,7 @@ var tools: Array = [
   "stone_spear"
 ]
 
-var placeables: Array = [
+var placeables: PackedStringArray = [
 	"workbench",
 	"stone_oven"
 ]
@@ -112,6 +112,31 @@ var placeables_ids: Dictionary = {
 	"workbench" : 4,
 	"stone_oven" : 6
 }
+
+var pickaxes: PackedStringArray = [
+	"stone_pickaxe",
+	"copper_pickaxe",
+	"iron_pickaxe",
+	"steel_pickaxe",
+	"incantarite_pickaxe"
+]
+
+var axes: PackedStringArray = [
+	"stone_axe",
+	"copper_axe",
+	"iron_axe",
+	"steel_axe",
+	"incantarite_axe"
+]
+
+
+func is_item_pickaxe(item: String) -> bool:
+	return tools.has(item) && pickaxes.has(item)
+
+
+func is_item_axe(item: String) -> bool:
+	return tools.has(item) && axes.has(item)
+
 
 func get_item_texture(item: String) -> Texture2D:
 	return textures[item]

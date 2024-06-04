@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 			hotbar_slots[i].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
 			hotbar_slots[i].count_label.text = ""
 			hotbar_slots[i].color_rect.color = Color("433f53")
-	place_random_tile()
+	#place_random_tile()
 
 
 func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:
@@ -71,8 +71,8 @@ func place_random_tile():
 		#change tile:          at: random_pos, atlas: 0, tile: 0,0 (because it's a scenes collection),
 		#                      alt_tile: 5
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 5)
-		#                        0.004%
-	if valid && rng.randi_range(0, 10000) <= 4:
+		#                        0.002%
+	if valid && rng.randi_range(0, 10000) <= 2:
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 7)
 		#                        0.005%
 	if valid && rng.randi_range(0, 10000) <= 5:

@@ -5,25 +5,13 @@ extends CharacterBody2D
 @onready var inventory_popup: Window = $"../InventoryPopup"
 @onready var inventory: Array = [
 	{
-		"item" : "stone",
-		"count" : 10
-	},
-	{
 		"item" : "fiber",
 		"count" : 10
-	},
-	{
-		"item" : "stick",
-		"count" : 16
 	},
 	{
 		"item" : "clay",
 		"count" : 2
 	},
-	{
-		"item" : "iron_ore",
-		"count" : 1
-	}
 ]
 @export var speed: float = 280
 @export var dir: int = 0
@@ -67,23 +55,24 @@ func _physics_process(_delta: float) -> void:
 	else:
 		$PlayerSprite.play("walk_" + str(dir))
 
-	if Input.is_action_pressed("walk_l"):
-		velocity[0] = -speed
-		dir = 3
-	elif Input.is_action_pressed("walk_r"):
-		velocity[0] = speed
-		dir = 1
-	else:
-		velocity[0] = 0
+	if not popup_open:
+		if Input.is_action_pressed("walk_l"):
+			velocity[0] = -speed
+			dir = 3
+		elif Input.is_action_pressed("walk_r"):
+			velocity[0] = speed
+			dir = 1
+		else:
+			velocity[0] = 0
 
-	if Input.is_action_pressed("walk_u"):
-		velocity[1] = -speed
-		dir = 0
-	elif Input.is_action_pressed("walk_d"):
-		velocity[1] = speed
-		dir = 2
-	else:
-		velocity[1] = 0
+		if Input.is_action_pressed("walk_u"):
+			velocity[1] = -speed
+			dir = 0
+		elif Input.is_action_pressed("walk_d"):
+			velocity[1] = speed
+			dir = 2
+		else:
+			velocity[1] = 0
 
 #INVENTORY RELATED CODE
 
@@ -126,11 +115,23 @@ func _physics_process(_delta: float) -> void:
 				add_inventory_item(ItemParser.get_tile_item(at_mouse_tile_id), 1)
 			elif resource_tiles.has(at_mouse_tile_id):
 				if at_mouse_tile_id == resource_tiles[0]:
-					add_inventory_item("stick", rng.randi_range(4, 8))
-				elif at_mouse_tile_id == resource_tiles[1]:
+					if c_hbar_slot["item"] != {}:
+						if ItemParser.is_item_axe(c_hbar_slot["item"]["item"]):
+							add_inventory_item("stick", rng.randi_range(4, 8))
+						else:
+							add_inventory_item("stick", rng.randi_range(1, 4))
+					else:
+							add_inventory_item("stick", rng.randi_range(1, 4))
+				elif at_mouse_tile_id == resource_tiles[1] && ItemParser.is_item_pickaxe(c_hbar_slot["item"]["item"]):
 					add_inventory_item("iron_ore", rng.randi_range(1, 2))
 				elif at_mouse_tile_id == resource_tiles[2]:
-					add_inventory_item("stone", rng.randi_range(2, 3))
+					if c_hbar_slot["item"] != {}:
+						if ItemParser.is_item_pickaxe(c_hbar_slot["item"]["item"]):
+							add_inventory_item("stone", rng.randi_range(2, 3))
+						else:
+							add_inventory_item("stone", rng.randi_range(0, 1))
+					else:
+							add_inventory_item("stone", rng.randi_range(0, 1))
 	elif Input.is_action_pressed("interact"):
 		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			if c_hbar_slot["item"]:
@@ -167,6 +168,8 @@ func add_inventory_item(item: String, count: int) -> void:
 			"count": count
 		})
 
+	@warning_ignore("narrowing_conversion")
+	z_index = 415 + position.y
 
 func remove_inventory_item(item: String, count: int) -> void:
 	for i: int in len(inventory):
