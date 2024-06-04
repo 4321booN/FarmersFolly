@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 			hotbar_slots[i].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
 			hotbar_slots[i].count_label.text = ""
 			hotbar_slots[i].color_rect.color = Color("433f53")
-	#place_random_tile()
+	place_random_tile()
 
 
 func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:

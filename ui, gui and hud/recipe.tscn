@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://datgwgg5fwg7l"]
+[gd_scene load_steps=11 format=3 uid="uid://datgwgg5fwg7l"]
 
 [ext_resource type="Theme" uid="uid://c4dqfbr034o6g" path="res://ui, gui and hud/theme.tres" id="1_m3mnp"]
 [ext_resource type="Script" path="res://ui, gui and hud/recipe.gd" id="1_t3pf1"]
@@ -15,6 +15,44 @@ vertical = true
 font_size = 28
 
 [sub_resource type="LabelSettings" id="LabelSettings_o1j83"]
+
+[sub_resource type="Animation" id="Animation_q3k4v"]
+resource_name = "crafting"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/ProgressLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Crafting", "Crafting.", "Crafting..", "Crafting..."]
+}
+
+[sub_resource type="Animation" id="Animation_mbpsw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/ProgressLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Crafting"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lp8vj"]
+_data = {
+"RESET": SubResource("Animation_mbpsw"),
+"crafting": SubResource("Animation_q3k4v")
+}
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -170,6 +208,11 @@ layout_mode = 2
 [node name="ProgressLabel" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
-text = "Crafting..."
+text = "Crafting"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lp8vj")
+}
 
 [connection signal="pressed" from="ColorRect/HBoxContainer/VBoxContainer/HBoxContainer2/CraftButton" to="." method="_on_craft_button_pressed"]

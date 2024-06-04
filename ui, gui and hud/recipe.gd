@@ -17,6 +17,7 @@ extends Control
 @onready var ingredient_texture5: TextureRect = $ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer3/IngredientTexture
 @onready var craft_button: Button = $ColorRect/HBoxContainer/VBoxContainer/HBoxContainer2/CraftButton
 @onready var progress_label: Label = $ColorRect/HBoxContainer/VBoxContainer/HBoxContainer/ProgressLabel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var delay: int
 
 # Called when the node enters the scene tree for the first time.
@@ -37,7 +38,9 @@ func _on_craft_button_pressed() -> void:
 			craft_button.disabled = true
 			if delay > 0:
 				progress_label.show()
+				animation_player.play("crafting")
 				await get_tree().create_timer(delay).timeout
+				animation_player.stop()
 				progress_label.hide()
 			player.add_inventory_item(ItemParser.names.find_key(result_label.text), 1)
 			is_crafted = true
