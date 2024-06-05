@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=29 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
 [ext_resource type="Texture2D" uid="uid://cyhow0knentc7" path="res://world/world_area_bg.png" id="2_16cmv"]
@@ -68,6 +68,44 @@ Window/icons/close_pressed = SubResource("ImageTexture_d344s")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ecpon"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ph40s"]
+
+[sub_resource type="Animation" id="Animation_0iaad"]
+resource_name = "water"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Vector2(-1136, -648), Vector2(-1145, -648), Vector2(-1121, -648)]
+}
+
+[sub_resource type="Animation" id="Animation_gjdqk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1136, -648)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ciojp"]
+_data = {
+"RESET": SubResource("Animation_gjdqk"),
+"water": SubResource("Animation_0iaad")
+}
 
 [node name="WorldArea" type="Node2D"]
 texture_filter = 1
@@ -218,12 +256,12 @@ offset_right = 1152.0
 offset_bottom = 768.0
 texture = ExtResource("2_16cmv")
 
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
+[node name="TextureRect" type="TextureRect" parent="."]
 z_index = -4095
-offset_left = 688.0
-offset_top = 200.0
-offset_right = 1584.0
-offset_bottom = 1160.0
+offset_left = -448.0
+offset_top = -448.0
+offset_right = 448.0
+offset_bottom = 512.0
 texture = ExtResource("13_7eiql")
 
 [node name="CursorHUD" parent="." instance=ExtResource("11_6jifv")]
@@ -297,6 +335,12 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ecpon")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ph40s")
 text = "H"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ciojp")
+}
+autoplay = "water"
 
 [connection signal="at_mouse_tile_id" from="." to="Player" method="_on_world_area_at_mouse_tile_id"]
 [connection signal="change_tile" from="." to="TileMap" method="_on_world_area_change_tile"]

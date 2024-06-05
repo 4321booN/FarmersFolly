@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var tilemap: TileMap = $"../TileMap"
 @onready var inventory_popup: Window = $"../InventoryPopup"
+@onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var inventory: Array = [
 	{
 		"item" : "fiber",
@@ -51,9 +52,14 @@ func _physics_process(_delta: float) -> void:
 		dir = 0
 
 	if not is_walking():
-		$PlayerSprite.play("idle")
+		var idle_dir: String
+		if dir > 1:
+			idle_dir = "1"
+		else:
+			idle_dir = "0"
+		player_sprite.play("idle_" + idle_dir)
 	else:
-		$PlayerSprite.play("walk_" + str(dir))
+		player_sprite.play("walk_" + str(dir))
 
 	if not popup_open:
 		if Input.is_action_pressed("walk_l"):
