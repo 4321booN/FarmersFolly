@@ -71,7 +71,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	z_index = position.y - player.position.y
+	z_index = position.y - (player.position.y + 32)
 	if just_placed:
 		await get_tree().create_timer(1).timeout
 	if Input.is_action_just_released("interact") && mouse_touching:

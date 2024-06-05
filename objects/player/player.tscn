@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dwmdigbi06eo3"]
+[gd_scene load_steps=25 format=3 uid="uid://dwmdigbi06eo3"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_dik4s"]
 [ext_resource type="Texture2D" uid="uid://cwkyiuwi3aq7d" path="res://objects/player/temp_player_sprites.png" id="2_jbnge"]
@@ -28,9 +28,29 @@ region = Rect2(42, 0, 14, 28)
 atlas = ExtResource("2_jbnge")
 region = Rect2(2, 0, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_em6br"]
-atlas = ExtResource("2_jbnge")
-region = Rect2(3, 0, 1, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8ly4"]
+atlas = ExtResource("3_sgkis")
+region = Rect2(140, 0, 14, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84ex1"]
+atlas = ExtResource("3_sgkis")
+region = Rect2(154, 0, 14, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qk5s"]
+atlas = ExtResource("3_sgkis")
+region = Rect2(168, 0, 14, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2tfg"]
+atlas = ExtResource("3_sgkis")
+region = Rect2(182, 0, 14, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj3hw"]
+atlas = ExtResource("3_sgkis")
+region = Rect2(196, 0, 14, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yram"]
+atlas = ExtResource("3_sgkis")
+region = Rect2(210, 0, 14, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxwiq"]
 atlas = ExtResource("2_jbnge")
@@ -96,8 +116,23 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_em6br")
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_f8ly4")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_84ex1")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_4qk5s")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_d2tfg")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_wj3hw")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_4yram")
 }],
 "loop": true,
 "name": &"walk_1",
@@ -146,8 +181,7 @@ script = ExtResource("1_dik4s")
 position = Vector2(1.90735e-06, 3.8147e-06)
 scale = Vector2(4.57143, 4.57143)
 sprite_frames = SubResource("SpriteFrames_5qcph")
-animation = &"walk_3"
-frame_progress = 0.065552
+animation = &"walk_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 48)

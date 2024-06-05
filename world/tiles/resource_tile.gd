@@ -6,4 +6,4 @@ extends StaticBody2D
 
 
 func _process(_delta: float) -> void:
-	z_index = position.y - player.position.y
+	z_index = position.y - (player.position.y + 32)
