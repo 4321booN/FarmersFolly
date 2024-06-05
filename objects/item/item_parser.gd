@@ -1,6 +1,7 @@
 extends Node
 
 var textures: Dictionary = {
+	'berry' : ResourceLoader.load("res://objects/item/berry.png"),
 	'clay' : ResourceLoader.load('res://objects/item/clay.png'),
 	'copper_axe' : ResourceLoader.load('res://objects/item/copper_axe.png'),
 	'copper_ingot' : ResourceLoader.load('res://objects/item/copper_ingot.png'),
@@ -39,6 +40,7 @@ var textures: Dictionary = {
 	'workbench' : ResourceLoader.load('res://objects/item/workbench.png'),
 }
 var names: Dictionary = {
+  "berry": "Berry",
   "clay": "Clay",
   "copper_axe": "Copper Axe",
   "copper_ingot": "Copper Ingot",
@@ -128,6 +130,21 @@ var axes: PackedStringArray = [
 	"steel_axe",
 	"incantarite_axe"
 ]
+
+var foods: PackedStringArray = [
+	"berry",
+]
+
+var food_values: Dictionary = {
+	"berry" : 2,
+}
+
+func get_food_value(item: String) -> int:
+	return food_values.get(item)
+
+
+func is_item_food(item: String) -> bool:
+	return foods.has(item)
 
 
 func is_item_pickaxe(item: String) -> bool:

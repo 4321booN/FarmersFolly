@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://crrhprlxppeuj"]
+
+[ext_resource type="Script" path="res://world/tiles/resource_tile.gd" id="1_dxac6"]
+[ext_resource type="Texture2D" uid="uid://bmhwxi1ddyacj" path="res://world/tiles/tall_grass.png" id="2_8ewyv"]
+
+[node name="TallGrass" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_dxac6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4.57143, 4.57143)
+texture = ExtResource("2_8ewyv")

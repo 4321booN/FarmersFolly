@@ -9,17 +9,19 @@ var tile_data_layer: String = "tile"
 var tile_id: int
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var hotbar_slots: Array = [
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item2",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item3",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item4",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item5",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item6",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item7",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item8",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item9",
-	$"CanvasLayer/Control/MarginContainer/MarginContainer/ColorRect/MarginContainer/HBoxContainer/Item10"
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item2,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item3,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item4,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item5,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item6,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item7,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item8,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item9,
+	$CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/ColorRect/MarginContainer/HBoxContainer/Item10
 ]
+@onready var health_bar: ProgressBar = $CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/HealthBar
+@onready var hunger_bar: ProgressBar = $CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/HungerBar
 @onready var player: CharacterBody2D = $Player
 @onready var tile_map: TileMap = $TileMap
 @onready var player_inventory = $InventoryPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
@@ -29,6 +31,8 @@ func _ready() -> void:
 	player_inventory.player = player
 
 func _process(_delta: float) -> void:
+	health_bar.value = player.health
+	hunger_bar.value = player.hunger
 	for i: int in player.hotbar.size():
 		if i < 10:
 			if i == player.c_hbar_slot["slot"]:
@@ -77,6 +81,12 @@ func place_random_tile():
 		#                        0.005%
 	if valid && rng.randi_range(0, 10000) <= 5:
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 8)
+		#                        0.07%
+	if valid && rng.randi_range(0, 1000) <= 7:
+		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 9)
+		#                        0.01%
+	if valid && rng.randi_range(0, 1000) <= 1:
+		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 10)
 
 
 func get_tile_data(retrival_pos: Vector2i, local_to_map: bool) -> int:

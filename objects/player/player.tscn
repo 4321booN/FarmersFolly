@@ -1,12 +1,22 @@
-[gd_scene load_steps=39 format=3 uid="uid://dwmdigbi06eo3"]
+[gd_scene load_steps=43 format=3 uid="uid://dwmdigbi06eo3"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_dik4s"]
 [ext_resource type="Texture2D" uid="uid://cwkyiuwi3aq7d" path="res://objects/player/temp_player_sprites.png" id="2_jbnge"]
 [ext_resource type="Texture2D" uid="uid://i35pusexx5fy" path="res://objects/player/player_frames.png" id="3_sgkis"]
+[ext_resource type="Texture2D" uid="uid://b3cbdonn7hsgx" path="res://objects/player/player.png" id="3_vbqwk"]
+[ext_resource type="Texture2D" uid="uid://bkvuxp37okl6y" path="res://objects/item/null.png" id="4_nj6sv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbkpi"]
 atlas = ExtResource("2_jbnge")
 region = Rect2(0, 0, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2n5d"]
+atlas = ExtResource("3_vbqwk")
+region = Rect2(0, 0, 14, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jbad"]
+atlas = ExtResource("4_nj6sv")
+region = Rect2(10, 8, 1, 2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rcrav"]
 atlas = ExtResource("3_sgkis")
@@ -147,6 +157,29 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2n5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jbad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2n5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jbad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2n5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jbad")
+}],
+"loop": true,
+"name": &"die",
+"speed": 2.0
+}, {
+"frames": [{
 "duration": 5.0,
 "texture": SubResource("AtlasTexture_rcrav")
 }, {
@@ -274,7 +307,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkxne"]
-size = Vector2(28, 32)
+size = Vector2(28, 16)
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
@@ -284,8 +317,8 @@ script = ExtResource("1_dik4s")
 position = Vector2(1.90735e-06, 3.8147e-06)
 scale = Vector2(4.57143, 4.57143)
 sprite_frames = SubResource("SpriteFrames_5qcph")
-animation = &"walk_3"
+animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 48)
+position = Vector2(0, 56)
 shape = SubResource("RectangleShape2D_lkxne")

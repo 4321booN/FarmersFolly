@@ -6,24 +6,23 @@ extends CharacterBody2D
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var inventory: Array = [
 	{
-		"item" : "fiber",
-		"count" : 10
-	},
-	{
 		"item" : "clay",
 		"count" : 2
 	},
 ]
 @export var speed: float = 280
+@export var health: int = 8
+@export var hunger: int = 16
+var stat_decay: float = 0.00
 @export var dir: int = 0
 @export var at_mouse_tile_id: int
 var rng = RandomNumberGenerator.new()
 var tile_pos: Vector2i
 var popup_open: bool = false
-var interacables: Array = [4, 5, 6, 7, 8]
-var breakables: Array = [4, 5, 6, 7, 8]
-var resource_tiles: Array = [5, 7, 8]
-var nothing: Array = [1]
+var interacables: Array = [4, 6]
+var breakables: Array = [4, 5, 6, 7, 8, 9, 10]
+var resource_tiles: Array = [5, 7, 8, 9, 10]
+var nothing: Array = [1, 9]
 var hotbar: Array = []
 var reach: float = 320.00
 var c_hbar_slot: Dictionary = {
@@ -40,7 +39,7 @@ func _ready() -> void:
 	pass
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 
 # MOVEMENT RELATED CODE
 
@@ -98,7 +97,7 @@ func _physics_process(_delta: float) -> void:
 
 	hotbar.clear()
 	for i: int in inventory.size():
-		if ItemParser.is_item_tool(inventory[i]["item"]) or ItemParser.is_item_placeable(inventory[i]["item"]):
+		if ItemParser.is_item_tool(inventory[i]["item"]) or ItemParser.is_item_placeable(inventory[i]["item"]) or ItemParser.is_item_food(inventory[i]["item"]):
 			hotbar.append(inventory[i])
 
 	if Input.is_action_just_released("open_inventory"):
@@ -115,7 +114,7 @@ func _physics_process(_delta: float) -> void:
 	emit_signal("get_tile_data", tile_pos)
 
 	if Input.is_action_just_released("break"):
-		if breakables.has(at_mouse_tile_id) and interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
+		if breakables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			emit_signal("change_tile", 1, Vector2i(1,0), 0)
 			if ItemParser.is_tile_placeable_item(at_mouse_tile_id):
 				add_inventory_item(ItemParser.get_tile_item(at_mouse_tile_id), 1)
@@ -138,13 +137,36 @@ func _physics_process(_delta: float) -> void:
 							add_inventory_item("stone", rng.randi_range(0, 1))
 					else:
 							add_inventory_item("stone", rng.randi_range(0, 1))
-	elif Input.is_action_pressed("interact"):
-		if nothing.has(at_mouse_tile_id) and not interacables.has(at_mouse_tile_id) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
-			if c_hbar_slot["item"]:
-				if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]):
-					remove_inventory_item(c_hbar_slot["item"]["item"], 1)
-					emit_signal("change_tile", 0, Vector2i(0,0), ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
-					c_hbar_slot["item"] = {}
+				elif at_mouse_tile_id == resource_tiles[3]:
+					add_inventory_item("fiber", rng.randi_range(2, 4))
+				elif at_mouse_tile_id == resource_tiles[4]:
+					add_inventory_item("berry", rng.randi_range(1, 3))
+	elif Input.is_action_just_released("interact"):
+		if not popup_open and get_local_mouse_position().distance_to(position) <= reach and c_hbar_slot["item"] != {}:
+			if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]) and nothing.has(at_mouse_tile_id):
+				remove_inventory_item(c_hbar_slot["item"]["item"], 1)
+				emit_signal("change_tile", 0, Vector2i(0,0), ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
+				c_hbar_slot["item"] = {}
+			if ItemParser.is_item_food(c_hbar_slot["item"]["item"]) && hunger < 16:
+				remove_inventory_item(c_hbar_slot["item"]["item"], 1)
+				hunger += ItemParser.get_food_value(c_hbar_slot["item"]["item"])
+				c_hbar_slot["item"] = {}
+
+
+	stat_decay += delta
+	if hunger > 16:
+		hunger = 16
+	if health > 8:
+		health = 8
+	if stat_decay >= 30 && hunger > 0:
+		hunger -= 1
+		stat_decay = 0.00
+	elif stat_decay >= 30:
+		health -= 1
+		stat_decay = 0.00
+	if health == 0:
+		await get_tree().create_timer(3).timeout
+		queue_free()
 
 # MORE INVENTORY RELATED CODE
 
