@@ -70,21 +70,21 @@ func place_random_tile():
 			break
 		if get_tile_data(random_pos, true) != player.nothing[i]:
 			valid = false
-	# makes it so that there's a 0.007% chance of a tile actually being placed
+	# makes it so that there's a 0.007% chance of a tile (tree) actually being placed
 	if valid && rng.randi_range(0, 10000) <= 7:
 		#change tile:          at: random_pos, atlas: 0, tile: 0,0 (because it's a scenes collection),
 		#                      alt_tile: 5
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 5)
-		#                        0.002%
-	if valid && rng.randi_range(0, 10000) <= 2:
-		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 7)
-		#                        0.005%
+		#                        0.004% copper_ore
+	if valid && rng.randi_range(0, 10000) <= 4:
+		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 11)
+		#                        0.005% boulder
 	if valid && rng.randi_range(0, 10000) <= 5:
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 8)
-		#                        0.07%
+		#                        0.07% tall_grass
 	if valid && rng.randi_range(0, 1000) <= 7:
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 9)
-		#                        0.01%
+		#                        0.01% berry_bush
 	if valid && rng.randi_range(0, 1000) <= 1:
 		emit_signal("change_tile", random_pos, 0, Vector2i(0,0), 10)
 

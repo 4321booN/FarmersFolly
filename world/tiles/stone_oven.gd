@@ -13,20 +13,16 @@ var recipes: Array = [
 	{
 		"ingredients" : [
 			{
-				"item" : "iron_ore",
+				"item" : "copper_ore",
 				"count" : 1
 			},
 			{
 				"item" : "stick",
-				"count" : 5
-			},
-			{
-				"item" : "stick",
-				"count" : 5
+				"count" : 8
 			}
 		],
-		"delay" : 25,
-		"result" : "iron_ingot"
+		"delay" : 18,
+		"result" : "copper_ingot"
 	}
 ]
 var mouse_touching: bool = false

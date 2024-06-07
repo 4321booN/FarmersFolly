@@ -8,7 +8,7 @@ extends CharacterBody2D
 	{
 		"item" : "clay",
 		"count" : 2
-	},
+	}
 ]
 @export var speed: float = 280
 @export var health: int = 8
@@ -20,8 +20,8 @@ var rng = RandomNumberGenerator.new()
 var tile_pos: Vector2i
 var popup_open: bool = false
 var interacables: Array = [4, 6]
-var breakables: Array = [4, 5, 6, 7, 8, 9, 10]
-var resource_tiles: Array = [5, 7, 8, 9, 10]
+var breakables: Array = [4, 5, 6, 7, 8, 9, 10, 11]
+var resource_tiles: Array = [5, 7, 8, 9, 10, 11]
 var nothing: Array = [1, 9]
 var hotbar: Array = []
 var reach: float = 320.00
@@ -141,6 +141,8 @@ func _physics_process(delta: float) -> void:
 					add_inventory_item("fiber", rng.randi_range(2, 4))
 				elif at_mouse_tile_id == resource_tiles[4]:
 					add_inventory_item("berry", rng.randi_range(1, 3))
+				elif at_mouse_tile_id == resource_tiles[5] && ItemParser.is_item_pickaxe(c_hbar_slot["item"]["item"]):
+					add_inventory_item("copper_ore", rng.randi_range(1, 3))
 	elif Input.is_action_just_released("interact"):
 		if not popup_open and get_local_mouse_position().distance_to(position) <= reach and c_hbar_slot["item"] != {}:
 			if ItemParser.is_item_placeable(c_hbar_slot["item"]["item"]) and nothing.has(at_mouse_tile_id):
