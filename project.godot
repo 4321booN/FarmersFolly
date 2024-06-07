@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 ItemParser="*res://objects/item/item_parser.gd"
 
+[display]
+
+window/size/resizable=false
+
 [dotnet]
 
 project/assembly_name="GHG 23-24"
