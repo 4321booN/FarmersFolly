@@ -45,7 +45,7 @@ func _on_craft_button_pressed() -> void:
 			player.add_inventory_item(ItemParser.names.find_key(result_label.text), 1)
 			is_crafted = true
 			craft_button.disabled = false
-		elif ItemParser.tools.has(ItemParser.names.find_key(result_label.text)):
+		elif ItemParser.is_item_tool(ItemParser.names.find_key(result_label.text)):
 			if player.inventory_has_item(ItemParser.names.find_key(result_label.text), 0):
 				is_crafted = false
 			else:

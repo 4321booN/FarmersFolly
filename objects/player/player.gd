@@ -5,10 +5,6 @@ extends CharacterBody2D
 @onready var inventory_popup: Window = $"../InventoryPopup"
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var inventory: Array = [
-	{
-		"item" : "clay",
-		"count" : 2
-	}
 ]
 @export var speed: float = 280
 @export var health: int = 8
@@ -20,7 +16,7 @@ var rng = RandomNumberGenerator.new()
 var tile_pos: Vector2i
 var popup_open: bool = false
 var interacables: Array = [4, 6]
-var breakables: Array = [4, 5, 6, 7, 8, 9, 10, 11]
+var breakables: Array = [4, 5, 6, 7, 8, 9, 10, 11, 12]
 var resource_tiles: Array = [5, 7, 8, 9, 10, 11]
 var nothing: Array = [1, 9]
 var hotbar: Array = []
@@ -129,6 +125,7 @@ func _physics_process(delta: float) -> void:
 							add_inventory_item("stick", rng.randi_range(1, 4))
 				elif at_mouse_tile_id == resource_tiles[1] && ItemParser.is_item_pickaxe(c_hbar_slot["item"]["item"]):
 					add_inventory_item("iron_ore", rng.randi_range(1, 2))
+					add_inventory_item("stone", rng.randi_range(0, 1))
 				elif at_mouse_tile_id == resource_tiles[2]:
 					if c_hbar_slot["item"] != {}:
 						if ItemParser.is_item_pickaxe(c_hbar_slot["item"]["item"]):
@@ -137,6 +134,8 @@ func _physics_process(delta: float) -> void:
 							add_inventory_item("stone", rng.randi_range(0, 1))
 					else:
 							add_inventory_item("stone", rng.randi_range(0, 1))
+					if rng.randf() > .8:
+								add_inventory_item("clay", 1)
 				elif at_mouse_tile_id == resource_tiles[3]:
 					add_inventory_item("fiber", rng.randi_range(2, 4))
 				elif at_mouse_tile_id == resource_tiles[4]:
@@ -149,10 +148,13 @@ func _physics_process(delta: float) -> void:
 				remove_inventory_item(c_hbar_slot["item"]["item"], 1)
 				emit_signal("change_tile", 0, Vector2i(0,0), ItemParser.get_placeable_id(c_hbar_slot["item"]["item"]))
 				c_hbar_slot["item"] = {}
-			if ItemParser.is_item_food(c_hbar_slot["item"]["item"]) && hunger < 16:
+			elif ItemParser.is_item_food(c_hbar_slot["item"]["item"]) && hunger < 16:
 				remove_inventory_item(c_hbar_slot["item"]["item"], 1)
 				hunger += ItemParser.get_food_value(c_hbar_slot["item"]["item"])
 				c_hbar_slot["item"] = {}
+			elif ItemParser.is_item_shovel(c_hbar_slot["item"]["item"]):
+				add_inventory_item("clay", rng.randi_range(1, 2))
+				emit_signal("change_tile", 0, Vector2i(0,0), 12)
 
 
 	stat_decay += delta

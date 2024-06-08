@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crrhprlxppeuj"]
 
-[ext_resource type="Script" path="res://world/tiles/resource_tile.gd" id="1_dxac6"]
+[ext_resource type="Script" path="res://world/tiles/tile.gd" id="1_dxac6"]
 [ext_resource type="Texture2D" uid="uid://bmhwxi1ddyacj" path="res://world/tiles/tall_grass.png" id="2_8ewyv"]
 
 [node name="TallGrass" type="StaticBody2D"]

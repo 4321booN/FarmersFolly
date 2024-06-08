@@ -133,6 +133,14 @@ var axes: PackedStringArray = [
 	"incantarite_axe"
 ]
 
+var shovels: PackedStringArray = [
+	"stone_shovel",
+	"copper_shovel",
+	"iron_shovel",
+	"steel_shovel",
+	"incantarite_shovel"
+]
+
 var foods: PackedStringArray = [
 	"berry",
 ]
@@ -155,6 +163,10 @@ func is_item_pickaxe(item: String) -> bool:
 
 func is_item_axe(item: String) -> bool:
 	return tools.has(item) && axes.has(item)
+
+
+func is_item_shovel(item: String) -> bool:
+	return tools.has(item) && shovels.has(item)
 
 
 func get_item_texture(item: String) -> Texture2D:

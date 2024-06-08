@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://difc05k4dlk7k"]
 
-[ext_resource type="Script" path="res://world/tiles/resource_tile.gd" id="1_r7sqe"]
+[ext_resource type="Script" path="res://world/tiles/tile.gd" id="1_r7sqe"]
 [ext_resource type="Texture2D" uid="uid://con3s1qp66gtb" path="res://world/tiles/iron_ore.png" id="3_1tvnt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpfn7"]

@@ -10,6 +10,7 @@ extends StaticBody2D
 
 
 var recipes: Array = [
+#	stone_pickaxe
 	{
 		"ingredients" : [
 			{
@@ -28,16 +29,7 @@ var recipes: Array = [
 		"delay" : 0,
 		"result" : "stone_pickaxe"
 	},
-	{
-		"ingredients" : [
-			{
-				"item" : "fiber",
-				"count" : 2
-			}
-		],
-		"delay" : 0,
-		"result" : "string"
-	},
+#	stone_axe
 	{
 		"ingredients" : [
 			{
@@ -56,6 +48,60 @@ var recipes: Array = [
 		"delay" : 0,
 		"result" : "stone_axe"
 	},
+#	copper_pickaxe
+	{
+		"ingredients" : [
+			{
+				"item" : "stick",
+				"count" : 1
+			},
+			{
+				"item" : "copper_ingot",
+				"count" : 2
+			},
+			{
+				"item": "stone_pickaxe",
+				"count" : 1
+			}
+		],
+		"delay" : 0,
+		"result" : "copper_pickaxe"
+	},
+#	copper_axe
+	{
+		"ingredients" : [
+			{
+				"item" : "stick",
+				"count" : 1
+			},
+			{
+				"item" : "copper_ingot",
+				"count" : 1
+			},
+			{
+				"item": "stone_axe",
+				"count" : 1
+			}
+		],
+		"delay" : 0,
+		"result" : "copper_axe"
+	},
+#	copper_shovel
+	{
+		"ingredients" : [
+			{
+				"item" : "stick",
+				"count" : 1
+			},
+			{
+				"item" : "copper_ingot",
+				"count" : 1
+			},
+		],
+		"delay" : 0,
+		"result" : "copper_shovel"
+	},
+#	workbench
 	{
 		"ingredients" : [
 			{
@@ -70,6 +116,7 @@ var recipes: Array = [
 		"delay" : 0,
 		"result" : "workbench"
 	},
+#	stone_oven
 	{
 		"ingredients" : [
 			{
@@ -83,7 +130,7 @@ var recipes: Array = [
 		],
 		"delay" : 0,
 		"result" : "stone_oven"
-	},
+	}
 ]
 var mouse_touching: bool = false
 var just_placed: bool = true
