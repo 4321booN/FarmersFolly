@@ -130,7 +130,18 @@ var recipes: Array = [
 		],
 		"delay" : 0,
 		"result" : "stone_oven"
-	}
+	},
+#	berry_bush_seeds
+	{
+		"ingredients" : [
+			{
+				"item" : "berry",
+				"count" : 1
+			}
+		],
+		"delay" : 0,
+		"result" : "berry_bush_seeds"
+	},
 ]
 var mouse_touching: bool = false
 var just_placed: bool = true

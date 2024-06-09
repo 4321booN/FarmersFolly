@@ -16,7 +16,7 @@ var rng = RandomNumberGenerator.new()
 var tile_pos: Vector2i
 var popup_open: bool = false
 var interacables: Array = [4, 6]
-var breakables: Array = [4, 5, 6, 7, 8, 9, 10, 11, 12]
+var breakables: Array = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 var resource_tiles: Array = [5, 7, 8, 9, 10, 11]
 var nothing: Array = [1, 9]
 var hotbar: Array = []
@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 
 	hotbar.clear()
 	for i: int in inventory.size():
-		if ItemParser.is_item_tool(inventory[i]["item"]) or ItemParser.is_item_placeable(inventory[i]["item"]) or ItemParser.is_item_food(inventory[i]["item"]):
+		if ItemParser.is_item_tool(inventory[i]["item"]) or ItemParser.is_item_placeable(inventory[i]["item"]) or ItemParser.is_item_food(inventory[i]["item"]) or ItemParser.is_item_seed(inventory[i]["item"]):
 			hotbar.append(inventory[i])
 
 	if Input.is_action_just_released("open_inventory"):
@@ -152,9 +152,13 @@ func _physics_process(delta: float) -> void:
 				remove_inventory_item(c_hbar_slot["item"]["item"], 1)
 				hunger += ItemParser.get_food_value(c_hbar_slot["item"]["item"])
 				c_hbar_slot["item"] = {}
-			elif ItemParser.is_item_shovel(c_hbar_slot["item"]["item"]):
+			elif ItemParser.is_item_shovel(c_hbar_slot["item"]["item"]) and nothing.has(at_mouse_tile_id):
 				add_inventory_item("clay", rng.randi_range(1, 2))
 				emit_signal("change_tile", 0, Vector2i(0,0), 12)
+			elif ItemParser.is_item_seed(c_hbar_slot["item"]["item"]) && at_mouse_tile_id == breakables[8]:
+				remove_inventory_item(c_hbar_slot["item"]["item"], 1)
+				emit_signal("change_tile", 0, Vector2i(0,0), 13)
+				c_hbar_slot["item"] = {}
 
 
 	stat_decay += delta

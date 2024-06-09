@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=37 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
 [ext_resource type="Texture2D" uid="uid://cyhow0knentc7" path="res://world/world_area_bg.png" id="2_16cmv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://hgljw18d1cr" path="res://world/tiles/hole.tscn" id="6_6ksqt"]
 [ext_resource type="PackedScene" uid="uid://bgser8v0xr656" path="res://world/tiles/stone_oven.tscn" id="6_olgxa"]
 [ext_resource type="Texture2D" uid="uid://doqc534p52ndg" path="res://world/tiles/world_tiles.png" id="6_p3lyl"]
+[ext_resource type="PackedScene" uid="uid://rrkja18nx3vf" path="res://world/tiles/berry_bush_crop.tscn" id="7_dw0ba"]
 [ext_resource type="PackedScene" uid="uid://difc05k4dlk7k" path="res://world/tiles/iron_ore.tscn" id="7_j24x0"]
 [ext_resource type="PackedScene" uid="uid://bp5yxhpxkwroe" path="res://world/tiles/boulder.tscn" id="8_y6pt1"]
 [ext_resource type="PackedScene" uid="uid://crrhprlxppeuj" path="res://world/tiles/tall_grass.tscn" id="9_sbfa1"]
@@ -46,6 +47,7 @@ scenes/9/scene = ExtResource("9_sbfa1")
 scenes/10/scene = ExtResource("4_mr3d8")
 scenes/11/scene = ExtResource("5_gmt45")
 scenes/12/scene = ExtResource("6_6ksqt")
+scenes/13/scene = ExtResource("7_dw0ba")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4h72b"]
 texture = ExtResource("6_p3lyl")

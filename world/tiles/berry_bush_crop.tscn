@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://rrkja18nx3vf"]
+
+[ext_resource type="Script" path="res://world/tiles/crop.gd" id="1_ucx8g"]
+[ext_resource type="Texture2D" uid="uid://k2b0ulnckrr8" path="res://world/tiles/crop.png" id="2_r1nf4"]
+
+[node name="berry_bushCrop" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_ucx8g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(4.57143, 4.57143)
+texture = ExtResource("2_r1nf4")
