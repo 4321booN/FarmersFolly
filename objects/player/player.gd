@@ -100,10 +100,6 @@ func _physics_process(delta: float) -> void:
 		inventory_popup.show()
 		popup_open = true
 
-	if Input.is_action_just_pressed("exit_ui"):
-		inventory_popup.hide()
-		popup_open = false
-
 # WORLD RELATED CODE
 
 	tile_pos = Vector2i(get_global_mouse_position())
@@ -204,8 +200,6 @@ func add_inventory_item(item: String, count: int) -> void:
 			"count": count
 		})
 
-	@warning_ignore("narrowing_conversion")
-	z_index = 415 + position.y
 
 func remove_inventory_item(item: String, count: int) -> void:
 	for i: int in len(inventory):
