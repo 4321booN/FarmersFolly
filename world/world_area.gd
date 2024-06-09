@@ -29,27 +29,23 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var esc_menu: Window = $ESCMenu
 
 
-
-func _ready() -> void:
-	player_inventory.player = player
-
 func _process(_delta: float) -> void:
 	health_bar.value = player.health
 	hunger_bar.value = player.hunger
-	for i: int in player.hotbar.size():
+	for i: int in Inventory.hotbar.size():
 		if i < 10:
-			if i == player.c_hbar_slot["slot"]:
+			if i == Inventory.c_hbar_slot["slot"]:
 				hotbar_slots[i].color_rect.color = Color("8E98B4")
 			else:
 				hotbar_slots[i].color_rect.color = Color("433f53")
-			hotbar_slots[i].texture_rect.texture = ItemParser.textures[player.hotbar[i].item]
-			hotbar_slots[i].count_label.text = str(player.hotbar[i].count)
+			hotbar_slots[i].texture_rect.texture = ItemParser.textures[Inventory.hotbar[i].item]
+			hotbar_slots[i].count_label.text = str(Inventory.hotbar[i].count)
 			if str_to_var(hotbar_slots[i].count_label.text) == 0:
 				hotbar_slots[i].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
 				hotbar_slots[i].count_label.text = ""
 				hotbar_slots[i].color_rect.color = Color("433f53")
 	for i: int in hotbar_slots.size():
-		if not player.hotbar.size() - 1 >= i:
+		if not Inventory.hotbar.size() - 1 >= i:
 			hotbar_slots[i].texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
 			hotbar_slots[i].count_label.text = ""
 			hotbar_slots[i].color_rect.color = Color("433f53")
