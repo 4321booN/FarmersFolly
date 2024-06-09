@@ -46,14 +46,14 @@ func _physics_process(delta: float) -> void:
 	elif dir < 0:
 		dir = 0
 
-	if not is_walking():
+	if not is_walking() && not popup_open:
 		var idle_dir: String
 		if dir > 1:
 			idle_dir = "1"
 		else:
 			idle_dir = "0"
 		player_sprite.play("idle_" + idle_dir)
-	else:
+	elif not popup_open:
 		player_sprite.play("walk_" + str(dir))
 
 	if not popup_open:

@@ -24,7 +24,9 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var hunger_bar: ProgressBar = $CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/HungerBar
 @onready var player: CharacterBody2D = $Player
 @onready var tile_map: TileMap = $TileMap
-@onready var player_inventory = $InventoryPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
+@onready var player_inventory: Control = $InventoryPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
+@onready var esc_menu: Window = $ESCMenu
+
 
 
 func _ready() -> void:
@@ -51,6 +53,9 @@ func _process(_delta: float) -> void:
 			hotbar_slots[i].count_label.text = ""
 			hotbar_slots[i].color_rect.color = Color("433f53")
 	place_random_tile()
+	if Input.is_action_just_released("exit_ui") and not player.popup_open:
+		esc_menu.show()
+		player.popup_open = true
 
 
 func _on_player_get_tile_data(retrival_pos: Vector2i) -> void:
@@ -109,3 +114,16 @@ func get_tile_data(retrival_pos: Vector2i, local_to_map: bool) -> int:
 		else:
 			tile_id = -1
 			return tile_id
+
+
+func _on_quit_to_title_button_pressed():
+	get_tree().change_scene_to_file("res://ui, gui and hud/title_screen.tscn")
+
+
+func _on_bug_report_button_pressed():
+	OS.shell_open("https://forms.gle/X4pBBBYXa74AkYTc9")
+
+
+func _on_back_to_game_button_pressed():
+	player.popup_open = false
+	esc_menu.hide()

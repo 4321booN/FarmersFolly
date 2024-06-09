@@ -21,7 +21,7 @@ ItemParser="*res://objects/item/item_parser.gd"
 
 [display]
 
-window/size/resizable=false
+window/stretch/mode="viewport"
 
 [dotnet]
 
