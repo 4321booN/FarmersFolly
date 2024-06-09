@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bcw0m3j6ly26m"]
+[gd_scene load_steps=38 format=3 uid="uid://bcw0m3j6ly26m"]
 
 [ext_resource type="Script" path="res://world/world_area.gd" id="1_faidl"]
 [ext_resource type="Texture2D" uid="uid://cyhow0knentc7" path="res://world/world_area_bg.png" id="2_16cmv"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://bp5yxhpxkwroe" path="res://world/tiles/boulder.tscn" id="8_y6pt1"]
 [ext_resource type="PackedScene" uid="uid://crrhprlxppeuj" path="res://world/tiles/tall_grass.tscn" id="9_sbfa1"]
 [ext_resource type="PackedScene" uid="uid://dv8rkto7fqxoq" path="res://ui, gui and hud/cursor_hud.tscn" id="11_6jifv"]
-[ext_resource type="Script" path="res://world/inventory_popup.gd" id="12_2x168"]
 [ext_resource type="PackedScene" uid="uid://bnbe18xxkv8ty" path="res://ui, gui and hud/inventory.tscn" id="12_iehis"]
 [ext_resource type="Texture2D" uid="uid://ck34uce5rt330" path="res://world/island.png" id="13_7eiql"]
 [ext_resource type="FontFile" uid="uid://dxhj70dmp2mf7" path="res://fonts and styles/GameIcons.ttf" id="13_qqu58"]
@@ -423,7 +422,6 @@ unresizable = true
 borderless = true
 always_on_top = true
 theme = SubResource("Theme_7ygww")
-script = ExtResource("12_2x168")
 
 [node name="Control" type="Control" parent="InventoryPopup"]
 layout_mode = 3
@@ -498,4 +496,4 @@ autoplay = "water"
 [connection signal="pressed" from="ESCMenu/Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/BackToGameButton" to="." method="_on_back_to_game_button_pressed"]
 [connection signal="pressed" from="ESCMenu/Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuitToTitleButton" to="." method="_on_quit_to_title_button_pressed"]
 [connection signal="pressed" from="ESCMenu/Control/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/BugReportButton" to="." method="_on_bug_report_button_pressed"]
-[connection signal="pressed" from="InventoryPopup/Control/HBoxContainer/MarginContainer2/Button" to="InventoryPopup" method="_on_button_pressed"]
+[connection signal="pressed" from="InventoryPopup/Control/HBoxContainer/MarginContainer2/Button" to="." method="_on_button_pressed"]
