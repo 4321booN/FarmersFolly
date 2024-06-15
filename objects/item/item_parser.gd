@@ -4,6 +4,10 @@ var textures: Dictionary = {
 	'berry' : ResourceLoader.load("res://objects/item/berry.png"),
 	'berry_bush_seeds' : ResourceLoader.load("res://objects/item/berry_seeds.png"),
 	'clay' : ResourceLoader.load('res://objects/item/clay.png'),
+	'brick' : ResourceLoader.load('res://objects/item/brick.png'),
+	'brick_oven' : ResourceLoader.load('res://objects/item/brick_oven.png'),
+	'brick_tile' : ResourceLoader.load('res://objects/item/brick_tile.png'),
+	'charcoal' : ResourceLoader.load('res://objects/item/charcoal.png'),
 	'copper_axe' : ResourceLoader.load('res://objects/item/copper_axe.png'),
 	'copper_ingot' : ResourceLoader.load('res://objects/item/copper_ingot.png'),
 	'copper_ore' : ResourceLoader.load("res://objects/item/copper_ore.png"),
@@ -45,6 +49,10 @@ var names: Dictionary = {
   "berry": "Berry",
   "berry_bush_seeds": "Berry Seeds",
   "clay": "Clay",
+  'brick' : "Brick",
+  'brick_oven' : "Brick Oven",
+  'brick_tile' : "Brick Floor",
+  'charcoal' : "Charcoal",
   "copper_axe": "Copper Axe",
   "copper_ingot": "Copper Ingot",
   "copper_ore": "Copper Ore",
@@ -111,12 +119,16 @@ var tools: PackedStringArray = [
 
 var placeables: PackedStringArray = [
 	"workbench",
-	"stone_oven"
+	"stone_oven",
+	"brick_oven",
+	"brick_tile"
 ]
 
 var placeables_ids: Dictionary = {
 	"workbench" : 4,
-	"stone_oven" : 6
+	"stone_oven" : 6,
+	"brick_oven" : 14,
+	"brick_tile" : 15
 }
 
 var pickaxes: PackedStringArray = [

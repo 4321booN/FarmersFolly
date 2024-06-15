@@ -1,12 +1,12 @@
 extends StaticBody2D
 
 
-@onready var popup: Window = $StoneOvenPopup
-@onready var control: Control = $StoneOvenPopup/Control/Control
+@onready var popup: Window = $BrickOvenPopup
+@onready var control: Control = $BrickOvenPopup/Control/Control
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var player: CharacterBody2D = PlayerNode.player
-@onready var recipe_container = $StoneOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RecipeContainer
-@onready var player_inventory = $StoneOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
+@onready var player: CharacterBody2D = $"../../Player"
+@onready var recipe_container = $BrickOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RecipeContainer
+@onready var player_inventory = $BrickOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
 
 
 var recipes: Array = [
@@ -22,7 +22,7 @@ var recipes: Array = [
 				"count" : 8
 			}
 		],
-		"delay" : 18,
+		"delay" : 12,
 		"result" : "copper_ingot"
 	},
 	{
@@ -36,8 +36,27 @@ var recipes: Array = [
 				"count" : 1
 			}
 		],
-		"delay" : 14,
+		"delay" : 8,
 		"result" : "copper_ingot"
+	},
+#	iron_ingot
+	{
+		"ingredients" : [
+			{
+				"item" : "iron_ore",
+				"count" : 1
+			},
+			{
+				"item" : "charcoal",
+				"count" : 1
+			},
+			{
+				"item" : "stick",
+				"count" : 3
+			}
+		],
+		"delay" : 14,
+		"result" : "iron_ingot"
 	},
 #	charcoal
 	{
@@ -51,7 +70,7 @@ var recipes: Array = [
 				"count" : 2
 			}
 		],
-		"delay" : 14,
+		"delay" : 8,
 		"result" : "charcoal"
 	},
 #	brick
@@ -66,7 +85,7 @@ var recipes: Array = [
 				"count" : 4
 			}
 		],
-		"delay" : 8,
+		"delay" : 6,
 		"result" : "brick"
 	},
 ]

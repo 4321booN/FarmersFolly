@@ -1,7 +1,6 @@
 extends Control
 
 
-@onready var player: CharacterBody2D
 @onready var vboxcontainer: VBoxContainer = %VBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +14,7 @@ func _process(_delta: float) -> void:
 			if vboxcontainer.get_child(i).texture_rect.texture == vboxcontainer.get_child(j).texture_rect.texture:
 				vboxcontainer.get_child(i).texture_rect.texture = ResourceLoader.load("res://objects/item/null.png")
 				vboxcontainer.get_child(i).count_label.text = ""
-		if i <= len(player.inventory) - 1:
-			vboxcontainer.get_child(i).texture_rect.texture = ItemParser.textures[player.inventory[i]["item"]]
-			vboxcontainer.get_child(i).count_label.text = str(player.inventory[i]["count"])
+		if i <= len(Inventory.inventory) - 1:
+			vboxcontainer.get_child(i).texture_rect.texture = ItemParser.textures[Inventory.inventory[i]["item"]]
+			vboxcontainer.get_child(i).count_label.text = str(Inventory.inventory[i]["count"])
 
