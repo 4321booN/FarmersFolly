@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player: CharacterBody2D = PlayerNode.player
 @onready var sprite: Sprite2D = $Sprite2D
 
 

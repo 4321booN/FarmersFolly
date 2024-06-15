@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 ItemParser="*res://objects/item/item_parser.gd"
 Inventory="*res://ui, gui and hud/global_inventory.gd"
+PlayerNode="*res://objects/player/player_node.gd"
 
 [display]
 

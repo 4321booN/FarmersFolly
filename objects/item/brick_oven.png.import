@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck34uce5rt330"
-path="res://.godot/imported/island.png-e55d13768e497e944cf3c37e0acb4542.ctex"
+uid="uid://c7bxnvcfpotdw"
+path="res://.godot/imported/brick_oven.png-386f1d8a81e5f1752a3eb8c0aa823033.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/island.png"
-dest_files=["res://.godot/imported/island.png-e55d13768e497e944cf3c37e0acb4542.ctex"]
+source_file="res://objects/item/brick_oven.png"
+dest_files=["res://.godot/imported/brick_oven.png-386f1d8a81e5f1752a3eb8c0aa823033.ctex"]
 
 [params]
 

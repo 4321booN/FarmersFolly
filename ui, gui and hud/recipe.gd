@@ -19,15 +19,6 @@ extends Control
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var delay: int
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
 
 func _on_craft_button_pressed() -> void:
 	if player_has_item(ingredient_label0) && player_has_item(ingredient_label1) && player_has_item(ingredient_label2) && player_has_item(ingredient_label3) && player_has_item(ingredient_label4) && player_has_item(ingredient_label5):

@@ -1,7 +1,12 @@
 extends Node
 
 
-var inventory: Array = []
+var inventory: Array = [
+	{
+		"item": "brick_tile",
+		"count": 10
+	}
+]
 var hotbar: Array = []
 var c_hbar_slot: Dictionary = {
 	"slot" : 0,

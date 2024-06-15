@@ -4,7 +4,7 @@ extends StaticBody2D
 @onready var popup: Window = $WorkbenchPopup
 @onready var control: Control = $WorkbenchPopup/Control
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player: CharacterBody2D = PlayerNode.player
 @onready var recipe_container = $WorkbenchPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RecipeContainer
 @onready var player_inventory = $WorkbenchPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
 
@@ -101,6 +101,63 @@ var recipes: Array = [
 		"delay" : 0,
 		"result" : "copper_shovel"
 	},
+#	iron_pickaxe
+	{
+		"ingredients" : [
+			{
+				"item" : "stick",
+				"count" : 1
+			},
+			{
+				"item" : "iron_ingot",
+				"count" : 2
+			},
+			{
+				"item": "copper_pickaxe",
+				"count" : 1
+			}
+		],
+		"delay" : 0,
+		"result" : "iron_pickaxe"
+	},
+#	iron_axe
+	{
+		"ingredients" : [
+			{
+				"item" : "stick",
+				"count" : 1
+			},
+			{
+				"item" : "iron_ingot",
+				"count" : 1
+			},
+			{
+				"item": "copper_axe",
+				"count" : 1
+			}
+		],
+		"delay" : 0,
+		"result" : "iron_axe"
+	},
+#	iron_shovel
+	{
+		"ingredients" : [
+			{
+				"item" : "stick",
+				"count" : 1
+			},
+			{
+				"item" : "iron_ingot",
+				"count" : 1
+			},
+			{
+				"item" : "copper_shovel",
+				"count" : 1
+			},
+		],
+		"delay" : 0,
+		"result" : "iron_shovel"
+	},
 #	workbench
 	{
 		"ingredients" : [
@@ -131,6 +188,21 @@ var recipes: Array = [
 		"delay" : 0,
 		"result" : "stone_oven"
 	},
+#	brick_oven
+	{
+		"ingredients" : [
+			{
+				"item" : "brick",
+				"count" : 8
+			},
+			{
+				"item" : "clay",
+				"count" : 2
+			}
+		],
+		"delay" : 0,
+		"result" : "brick_oven"
+	},
 #	berry_bush_seeds
 	{
 		"ingredients" : [
@@ -141,6 +213,21 @@ var recipes: Array = [
 		],
 		"delay" : 0,
 		"result" : "berry_bush_seeds"
+	},
+#	brick_tile
+	{
+		"ingredients" : [
+			{
+				"item" : "brick",
+				"count" : 4
+			},
+			{
+				"item" : "clay",
+				"count" : 2
+			}
+		],
+		"delay" : 0,
+		"result" : "brick_tile"
 	},
 ]
 var mouse_touching: bool = false
