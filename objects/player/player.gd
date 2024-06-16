@@ -34,8 +34,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
-	@warning_ignore("narrowing_conversion")
-	z_index = 415 + position.y
+#	@warning_ignore("narrowing_conversion")
+#	z_index = 415 + position.y
 
 # MOVEMENT RELATED CODE
 

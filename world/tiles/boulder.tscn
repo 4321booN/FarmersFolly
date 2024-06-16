@@ -8,6 +8,7 @@ radius = 16.0
 height = 48.0
 
 [node name="Boulder" type="StaticBody2D"]
+y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_oclru")
 

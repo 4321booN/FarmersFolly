@@ -310,15 +310,16 @@ animations = [{
 size = Vector2(28, 16)
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_dik4s")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.90735e-06, 3.8147e-06)
+position = Vector2(9.53674e-06, -48)
 scale = Vector2(4.57143, 4.57143)
 sprite_frames = SubResource("SpriteFrames_5qcph")
 animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 56)
+position = Vector2(7.62939e-06, 8.00002)
 shape = SubResource("RectangleShape2D_lkxne")

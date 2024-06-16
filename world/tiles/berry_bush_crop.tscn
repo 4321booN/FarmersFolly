@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://k2b0ulnckrr8" path="res://world/tiles/crop.png" id="2_r1nf4"]
 
 [node name="berry_bushCrop" type="StaticBody2D"]
+y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_ucx8g")
 

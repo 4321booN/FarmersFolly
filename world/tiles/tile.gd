@@ -6,5 +6,6 @@ extends StaticBody2D
 
 
 func _process(_delta: float) -> void:
-	@warning_ignore("narrowing_conversion")
-	z_index = position.y - (player.position.y + 32)
+#	@warning_ignore("narrowing_conversion")
+#	z_index = position.y - (player.position.y + 32)
+	pass
