@@ -4,8 +4,6 @@ extends TileMap
 var tile_pos: Vector2i
 
 func _process(_delta: float) -> void:
-#	set_layer_z_index(0, player.z_index - 1)
-#	set_layer_z_index(1, -415)
 #	Sets the tile_pos to a Intergerized Global Mouse Position
 	tile_pos = local_to_map(Vector2i(get_global_mouse_position()))
 

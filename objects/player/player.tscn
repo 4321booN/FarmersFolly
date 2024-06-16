@@ -315,11 +315,11 @@ texture_filter = 1
 script = ExtResource("1_dik4s")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(9.53674e-06, -48)
+position = Vector2(9.53674e-06, -32)
 scale = Vector2(4.57143, 4.57143)
 sprite_frames = SubResource("SpriteFrames_5qcph")
 animation = &"die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.62939e-06, 8.00002)
+position = Vector2(7.62939e-06, 24)
 shape = SubResource("RectangleShape2D_lkxne")
