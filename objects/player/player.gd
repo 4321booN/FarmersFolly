@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 		popup_open = true
 
 # WORLD RELATED CODE
-
+#	prints(str(at_mouse_tile_id), str(bg_mouse_tile_id))
 	tile_pos = Vector2i(get_global_mouse_position())
 	emit_signal("get_tile_data", tile_pos)
 	emit_signal("get_bg_tile_data", tile_pos)
@@ -112,9 +112,9 @@ func _physics_process(delta: float) -> void:
 			emit_signal("change_tile", 1, 1, Vector2i(1,0), 0)
 			if ItemParser.is_tile_placeable_item(at_mouse_tile_id):
 				Inventory.add_inventory_item(ItemParser.get_tile_item(at_mouse_tile_id), 1)
-			if bg_tiles.has(bg_mouse_tile_id) and ItemParser.is_tile_placeable_item(bg_mouse_tile_id):\
+			if bg_tiles.has(bg_mouse_tile_id) and ItemParser.is_tile_placeable_item(bg_mouse_tile_id):
 				Inventory.add_inventory_item(ItemParser.get_tile_item(bg_mouse_tile_id), 1)
-			elif resource_tiles.has(at_mouse_tile_id):
+			if resource_tiles.has(at_mouse_tile_id):
 				if at_mouse_tile_id == resource_tiles[0]:
 					if Inventory.c_hbar_slot["item"] != {}:
 						if ItemParser.is_item_axe(Inventory.c_hbar_slot["item"]["item"]):
@@ -144,16 +144,16 @@ func _physics_process(delta: float) -> void:
 					Inventory.add_inventory_item("copper_ore", rng.randi_range(1, 3))
 	elif Input.is_action_just_released("interact"):
 		if not popup_open and get_local_mouse_position().distance_to(position) <= reach and Inventory.c_hbar_slot["item"] != {}:
-			if ItemParser.is_item_placeable(Inventory.c_hbar_slot["item"]["item"]) and nothing.has(at_mouse_tile_id):
-				if bg_tiles.has(ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"])):
-					Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
+			if ItemParser.is_item_placeable(Inventory.c_hbar_slot["item"]["item"]) and not bg_tiles.has(ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"])) and nothing.has(at_mouse_tile_id):
+				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
+				emit_signal("change_tile", 0, 0, Vector2i(0,0), ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"]))
+				Inventory.c_hbar_slot["item"] = {}
+			if ItemParser.is_item_placeable(Inventory.c_hbar_slot["item"]["item"]) and bg_tiles.has(ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"])) and nothing.has(bg_mouse_tile_id):
+				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
+				if nothing.has(at_mouse_tile_id):
 					emit_signal("change_tile", 0, 1, Vector2i(0,0), 0)
-					emit_signal("change_tile", 1, 2, bg_tiles_tiles[bg_tiles.find(at_mouse_tile_id)], 0)
-					Inventory.c_hbar_slot["item"] = {}
-				else:
-					Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
-					emit_signal("change_tile", 0, 0, Vector2i(0,0), ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"]))
-					Inventory.c_hbar_slot["item"] = {}
+				emit_signal("change_tile", 1, 2, bg_tiles_tiles[bg_tiles.find(at_mouse_tile_id)], 0)
+				Inventory.c_hbar_slot["item"] = {}
 			elif ItemParser.is_item_food(Inventory.c_hbar_slot["item"]["item"]) && hunger < 16:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
 				hunger += ItemParser.get_food_value(Inventory.c_hbar_slot["item"]["item"])
