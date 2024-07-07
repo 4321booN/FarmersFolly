@@ -163,7 +163,7 @@ func _physics_process(delta: float) -> void:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
 				if nothing.has(at_mouse_tile_id):
 					emit_signal("change_tile", 0, 1, Vector2i(0,0), 0)
-				emit_signal("change_tile", 1, 1, bg_tiles_tiles[bg_tiles.find(at_mouse_tile_id)], 0)
+				emit_signal("change_tile", 1, 1, bg_tiles_tiles[bg_tiles.find(ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"]))], 0)
 				Inventory.c_hbar_slot["item"] = {}
 			elif ItemParser.is_item_food(Inventory.c_hbar_slot["item"]["item"]) && hunger < 16:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)

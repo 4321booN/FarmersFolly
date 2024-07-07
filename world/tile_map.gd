@@ -21,9 +21,11 @@ func _on_player_change_tile(layer: int, atlas: int, tile: Vector2i, alt_tile: in
 
 func _on_world_area_change_tile(pos: Vector2i, atlas: int, tile: Vector2i, alt_tile: int) -> void:
 	set_cell(0, pos, atlas, tile, alt_tile)
+	update_internals()
 
 
-func _on_load_change_tile(pos: Vector2i, layer: int, atlas: int, tile: Vector2i, alt_tile: int) -> void:
+func load_tile(pos: Vector2i, layer: int, atlas: int, tile: Vector2i, alt_tile: int) -> void:
 #	Set the tile in layer: layer at position: pos to tile: tile from atlas: atlas
-#	print("layer: ", str(layer),", atlas: ", str(atlas), ", tile: ", str(tile), ", alt_tile: ", str(alt_tile))
+#	print("Changing tile. layer: ", str(layer),", atlas: ", str(atlas), ", tile: ", str(tile), ", alt_tile: ", str(alt_tile))
 	set_cell(layer, pos, atlas, tile, alt_tile)
+	update_internals()

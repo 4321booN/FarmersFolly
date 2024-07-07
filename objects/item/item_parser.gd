@@ -168,22 +168,22 @@ var seeds: PackedStringArray = [
 ]
 
 var tile_atlas_pos: PackedVector2Array = [
-	Vector2(0,0),
-	Vector2(1,0),
-	Vector2(0,1),
-	Vector2(1,1),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(2,0),
+	Vector2(0,0), #Nothing
+	Vector2(1,0), #Grass Top
+	Vector2(0,1), #Water
+	Vector2(1,1), #Grass Side
+	Vector2(0,0), #Workbench
+	Vector2(0,0), #Tree
+	Vector2(0,0), #Stone Oven
+	Vector2(0,0), #Iron Ore
+	Vector2(0,0), #Boulder
+	Vector2(0,0), #Tall Grass
+	Vector2(0,0), #Berry Bush
+	Vector2(0,0), #Copper Ore
+	Vector2(0,0), #Hole
+	Vector2(0,0), #Berry Bush Crop
+	Vector2(0,0), #Brick Oven
+	Vector2(2,0), #Brick Tile
 ]
 
 
