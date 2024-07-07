@@ -167,6 +167,25 @@ var seeds: PackedStringArray = [
 	"berry_bush_seeds"
 ]
 
+var tile_atlas_pos: PackedVector2Array = [
+	Vector2(0,0),
+	Vector2(1,0),
+	Vector2(0,1),
+	Vector2(1,1),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(2,0),
+]
+
 
 func is_item_seed(item: String) -> bool:
 	return seeds.has(item)

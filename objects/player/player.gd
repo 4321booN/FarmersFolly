@@ -18,7 +18,7 @@ var interacables: Array = [4, 6, 14]
 var breakables: Array = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 var bg_tiles: Array = [15]
 var bg_tiles_tiles: PackedVector2Array = [
-	Vector2i(0, 0)
+	Vector2i(2, 0)
 ]
 var resource_tiles: Array = [5, 7, 8, 9, 10, 11]
 var nothing: Array = [-1, 0, 1, 9]
@@ -30,10 +30,19 @@ signal change_tile
 
 func _ready() -> void:
 	PlayerNode.player = self
+	var atlas0_tiles: Array = breakables
+	for i in bg_tiles.size():
+		atlas0_tiles.erase(bg_tiles[i])
+	Load.atlas0_tiles = atlas0_tiles
+	var atlas1_tiles: Array = bg_tiles
+	atlas1_tiles.append_array([0,1,2,3])
+	Load.atlas1_tiles = atlas1_tiles
 
 
 func _physics_process(delta: float) -> void:
-
+	Save.player_position = position
+	Save.player_health = health
+	Save.player_hunger = hunger
 #	@warning_ignore("narrowing_conversion")
 #	z_index = 415 + position.y
 
@@ -107,6 +116,7 @@ func _physics_process(delta: float) -> void:
 	emit_signal("get_bg_tile_data", tile_pos)
 
 	if Input.is_action_just_released("break"):
+		tilemap.update_internals()
 		if (breakables.has(at_mouse_tile_id) or breakables.has(bg_mouse_tile_id)) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
 			emit_signal("change_tile", 0, 1, Vector2i(0,0), 0)
 			emit_signal("change_tile", 1, 1, Vector2i(1,0), 0)
@@ -143,6 +153,7 @@ func _physics_process(delta: float) -> void:
 				elif at_mouse_tile_id == resource_tiles[5] && ItemParser.is_item_pickaxe(Inventory.c_hbar_slot["item"]["item"]):
 					Inventory.add_inventory_item("copper_ore", rng.randi_range(1, 3))
 	elif Input.is_action_just_released("interact"):
+		tilemap.update_internals()
 		if not popup_open and get_local_mouse_position().distance_to(position) <= reach and Inventory.c_hbar_slot["item"] != {}:
 			if ItemParser.is_item_placeable(Inventory.c_hbar_slot["item"]["item"]) and not bg_tiles.has(ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"])) and nothing.has(at_mouse_tile_id):
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
@@ -152,7 +163,7 @@ func _physics_process(delta: float) -> void:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
 				if nothing.has(at_mouse_tile_id):
 					emit_signal("change_tile", 0, 1, Vector2i(0,0), 0)
-				emit_signal("change_tile", 1, 2, bg_tiles_tiles[bg_tiles.find(at_mouse_tile_id)], 0)
+				emit_signal("change_tile", 1, 1, bg_tiles_tiles[bg_tiles.find(at_mouse_tile_id)], 0)
 				Inventory.c_hbar_slot["item"] = {}
 			elif ItemParser.is_item_food(Inventory.c_hbar_slot["item"]["item"]) && hunger < 16:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)

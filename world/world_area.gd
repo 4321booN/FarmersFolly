@@ -30,6 +30,11 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var esc_menu: Window = $ESCMenu
 
 
+func _ready() -> void:
+	Save.world_area = self
+	Load.loadgame()
+
+
 func _process(_delta: float) -> void:
 	health_bar.value = player.health
 	hunger_bar.value = player.hunger
@@ -120,6 +125,7 @@ func get_tile_data(layer: int, retrival_pos: Vector2i, local_to_map: bool) -> in
 
 
 func _on_quit_to_title_button_pressed():
+	Save.savegame()
 	get_tree().change_scene_to_file("res://ui, gui and hud/title_screen.tscn")
 
 

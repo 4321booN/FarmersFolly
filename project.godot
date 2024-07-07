@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GHG 23-24"
+config/name="FarmersFolly"
 run/main_scene="res://ui, gui and hud/title_screen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -20,6 +20,9 @@ config/icon="res://icon.svg"
 ItemParser="*res://objects/item/item_parser.gd"
 Inventory="*res://ui, gui and hud/global_inventory.gd"
 PlayerNode="*res://objects/player/player_node.gd"
+Save="*res://save.gd"
+Commands="*res://commands.gd"
+Load="*res://load.gd"
 
 [display]
 
