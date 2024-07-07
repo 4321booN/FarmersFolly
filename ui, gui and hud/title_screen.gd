@@ -1,6 +1,7 @@
 extends Control
 
 const world_area: String = "res://world/world_area.tscn"
+const tutorial: String = "res://ui, gui and hud/tutorial.tscn"
 
 
 func _on_world_area_button_pressed() -> void:
@@ -14,3 +15,7 @@ func _on_bug_report_button_pressed():
 func _on_new_game_button_pressed():
 	DirAccess.remove_absolute("user://save.ffs")
 	get_tree().change_scene_to_file(world_area)
+
+
+func _on_tutorial_button_pressed():
+	get_tree().change_scene_to_file(tutorial)

@@ -37,6 +37,7 @@ func loadgame() -> void:
 						tilemap.load_tile(Vector2i(x-16,y-13), layer, 1, ItemParser.tile_atlas_pos[tile_id], 0)
 		inventory_size = save_file.get_8()
 		for i in inventory_size:
+			Inventory.inventory.clear()
 			Inventory.inventory.append({"item": save_file.get_pascal_string(), "count": save_file.get_8()})
 	else:
 		new_save = true

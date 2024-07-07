@@ -10,6 +10,7 @@ var c_hbar_slot: Dictionary = {
 		
 	}
 }
+var c_hbar_item: Dictionary = {}
 
 
 func remove_0stacks() -> void:

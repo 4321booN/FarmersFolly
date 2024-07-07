@@ -74,6 +74,13 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Bug Reports"
 
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Controls"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/world_areaButton" to="." method="_on_world_area_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/BugReportButton" to="." method="_on_bug_report_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]

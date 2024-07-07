@@ -115,6 +115,8 @@ func _physics_process(delta: float) -> void:
 	emit_signal("get_tile_data", tile_pos)
 	emit_signal("get_bg_tile_data", tile_pos)
 
+	Inventory.c_hbar_item = Inventory.c_hbar_slot.item
+
 	if Input.is_action_just_released("break"):
 		tilemap.update_internals()
 		if (breakables.has(at_mouse_tile_id) or breakables.has(bg_mouse_tile_id)) and not popup_open and get_local_mouse_position().distance_to(position) <= reach:
@@ -159,20 +161,20 @@ func _physics_process(delta: float) -> void:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
 				emit_signal("change_tile", 0, 0, Vector2i(0,0), ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"]))
 				Inventory.c_hbar_slot["item"] = {}
-			if ItemParser.is_item_placeable(Inventory.c_hbar_slot["item"]["item"]) and bg_tiles.has(ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"])) and nothing.has(bg_mouse_tile_id):
+			if ItemParser.is_item_placeable(Inventory.c_hbar_item["item"]) and bg_tiles.has(ItemParser.get_placeable_id(Inventory.c_hbar_item["item"])) and nothing.has(bg_mouse_tile_id):
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
 				if nothing.has(at_mouse_tile_id):
 					emit_signal("change_tile", 0, 1, Vector2i(0,0), 0)
 				emit_signal("change_tile", 1, 1, bg_tiles_tiles[bg_tiles.find(ItemParser.get_placeable_id(Inventory.c_hbar_slot["item"]["item"]))], 0)
 				Inventory.c_hbar_slot["item"] = {}
-			elif ItemParser.is_item_food(Inventory.c_hbar_slot["item"]["item"]) && hunger < 16:
+			elif ItemParser.is_item_food(Inventory.c_hbar_item["item"]) && hunger < 16:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
 				hunger += ItemParser.get_food_value(Inventory.c_hbar_slot["item"]["item"])
 				Inventory.c_hbar_slot["item"] = {}
-			elif ItemParser.is_item_shovel(Inventory.c_hbar_slot["item"]["item"]) and nothing.has(at_mouse_tile_id):
+			elif ItemParser.is_item_shovel(Inventory.c_hbar_item["item"]) and nothing.has(at_mouse_tile_id):
 				Inventory.add_inventory_item("clay", rng.randi_range(1, 2))
 				emit_signal("change_tile", 0, 0, Vector2i(0,0), 12)
-			elif ItemParser.is_item_seed(Inventory.c_hbar_slot["item"]["item"]) && at_mouse_tile_id == breakables[8]:
+			elif ItemParser.is_item_seed(Inventory.c_hbar_item["item"]) && at_mouse_tile_id == breakables[8]:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
 				emit_signal("change_tile", 0, 0, Vector2i(0,0), 13)
 				Inventory.c_hbar_slot["item"] = {}
