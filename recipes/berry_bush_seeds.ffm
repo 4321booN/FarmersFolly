@@ -1,0 +1,11 @@
+{
+	"type":"ff:workbench",
+	"ingredients" : [
+		{
+			"item" : "berry",
+			"count" : 1
+		}
+	],
+	"result" : "berry_bush_seeds",
+	"delay" : 0
+}

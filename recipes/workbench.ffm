@@ -1,0 +1,15 @@
+{
+	"type":"ff:workbench",
+	"ingredients" : [
+		{
+			"item" : "stick",
+			"count" : 8
+		},
+		{
+			"item" : "stone",
+			"count" : 1
+		}
+	],
+	"result" : "workbench",
+	"delay" : 0
+}

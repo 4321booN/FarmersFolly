@@ -1,0 +1,15 @@
+{
+	"type":"ff:stone_oven",
+	"ingredients" : [
+		{
+			"item" : "clay",
+			"count" : 1
+		},
+		{
+			"item" : "charcoal",
+			"count" : 1
+		}
+	],
+	"result" : "brick",
+	"delay" : 4
+}

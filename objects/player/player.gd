@@ -135,7 +135,7 @@ func _physics_process(delta: float) -> void:
 							Inventory.add_inventory_item("stick", rng.randi_range(1, 4))
 					else:
 						Inventory.add_inventory_item("stick", rng.randi_range(1, 4))
-				elif at_mouse_tile_id == resource_tiles[1] && ItemParser.is_item_pickaxe(Inventory.c_hbar_slot["item"]["item"]):
+				elif at_mouse_tile_id == resource_tiles[1] && ItemParser.is_item_pickaxe(Inventory.c_hbar_slot["item"]["item"]) && Inventory.c_hbar_item["item"] == "copper_pickaxe":
 					Inventory.add_inventory_item("iron_ore", rng.randi_range(1, 2))
 					Inventory.add_inventory_item("stone", rng.randi_range(0, 1))
 				elif at_mouse_tile_id == resource_tiles[2]:

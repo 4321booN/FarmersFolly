@@ -1,0 +1,19 @@
+{
+	"type":"ff:workbench",
+	"ingredients" : [
+		{
+			"item" : "stick",
+			"count" : 1
+		},
+		{
+			"item" : "fiber",
+			"count" : 1
+		},
+		{
+			"item" : "stone",
+			"count" : 1
+		}
+	],
+	"result" : "stone_axe",
+	"delay" : 0
+}

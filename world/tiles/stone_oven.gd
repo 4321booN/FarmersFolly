@@ -7,75 +7,17 @@ extends StaticBody2D
 @onready var player: CharacterBody2D = PlayerNode.player
 @onready var recipe_container = $StoneOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/ScrollContainer/RecipeContainer
 @onready var player_inventory = $StoneOvenPopup/Control/HBoxContainer/MarginContainer/HBoxContainer/PlayerInventory
+var recipe_types: Array = ["ff:stone_oven"]
 
-
-var recipes: Array = [
-#	copper_ingot
-	{
-		"ingredients" : [
-			{
-				"item" : "copper_ore",
-				"count" : 1
-			},
-			{
-				"item" : "stick",
-				"count" : 8
-			}
-		],
-		"delay" : 18,
-		"result" : "copper_ingot"
-	},
-	{
-		"ingredients" : [
-			{
-				"item" : "copper_ore",
-				"count" : 1
-			},
-			{
-				"item" : "charcoal",
-				"count" : 1
-			}
-		],
-		"delay" : 14,
-		"result" : "copper_ingot"
-	},
-#	charcoal
-	{
-		"ingredients" : [
-			{
-				"item" : "stick",
-				"count" : 4
-			},
-			{
-				"item" : "stick",
-				"count" : 2
-			}
-		],
-		"delay" : 14,
-		"result" : "charcoal"
-	},
-#	brick
-	{
-		"ingredients" : [
-			{
-				"item" : "clay",
-				"count" : 1
-			},
-			{
-				"item" : "stick",
-				"count" : 4
-			}
-		],
-		"delay" : 8,
-		"result" : "brick"
-	},
-]
+var recipes: Array = []
 var mouse_touching: bool = false
 var just_placed: bool = true
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for i: int in recipe_types.size():
+		recipes.append_array(Load.recipes[recipe_types[i]])
 	for i: int in recipes.size():
 		var scene: PackedScene = load("res://ui, gui and hud/recipe.tscn")
 		var scene_instance = scene.instantiate()

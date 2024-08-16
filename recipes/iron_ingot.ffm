@@ -1,0 +1,15 @@
+{
+	"type":"ff:brick_oven",
+	"ingredients" : [
+		{
+			"item" : "iron_ore",
+			"count" : 1
+		},
+		{
+			"item" : "charcoal",
+			"count" : 2
+		}
+	],
+	"result" : "iron_ingot",
+	"delay" : 14
+}

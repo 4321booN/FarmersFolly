@@ -1,0 +1,19 @@
+{
+	"type":"ff:workbench",
+	"ingredients" : [
+		{
+			"item" : "stick",
+			"count" : 1
+		},
+		{
+			"item" : "iron_ingot",
+			"count" : 1
+		},
+		{
+			"item" : "copper_shovel",
+			"count" : 1
+		}
+	],
+	"result" : "iron_shovel",
+	"delay" : 0
+}

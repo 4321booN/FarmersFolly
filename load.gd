@@ -9,6 +9,7 @@ var player_position: Vector2
 var player_health: int
 var player_hunger: int
 var new_save: bool = false
+var recipes: Dictionary = {}
 
 
 func loadgame() -> void:
@@ -43,3 +44,15 @@ func loadgame() -> void:
 		new_save = true
 		pass
 	save_file.close()
+	
+	var recipes_folder: DirAccess = DirAccess.open("res://recipes")
+	if recipes_folder:
+		recipes_folder.list_dir_begin()
+		for i in recipes_folder.get_files():
+			var c_recipe: FileAccess = FileAccess.open("res://recipes/" + i, FileAccess.READ)
+			var c_recipe_json = JSON.parse_string(c_recipe.get_as_text())
+			if recipes.has(c_recipe_json["type"]):
+				recipes[c_recipe_json["type"]].append({"ingredients":c_recipe_json["ingredients"],"result":c_recipe_json["result"],"delay": c_recipe_json["delay"]})
+			else:
+				recipes.merge({c_recipe_json["type"]:[]})
+				recipes[c_recipe_json["type"]].append({"ingredients":c_recipe_json["ingredients"],"result":c_recipe_json["result"],"delay": c_recipe_json["delay"]})

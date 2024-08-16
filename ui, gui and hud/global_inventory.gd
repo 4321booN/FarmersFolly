@@ -2,6 +2,10 @@ extends Node
 
 
 var inventory: Array = [
+	{"item":"stone_oven",
+	"count":1},
+	{"item":"brick_oven",
+	"count":1}
 ]
 var hotbar: Array = []
 var c_hbar_slot: Dictionary = {

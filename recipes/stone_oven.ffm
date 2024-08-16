@@ -1,0 +1,15 @@
+{
+	"type":"ff:workbench",
+	"ingredients" : [
+		{
+			"item" : "stone",
+			"count" : 8
+		},
+		{
+			"item" : "clay",
+			"count" : 2
+		}
+	],
+	"result" : "stone_oven",
+	"delay" : 0
+}

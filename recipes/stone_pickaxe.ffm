@@ -1,0 +1,19 @@
+{
+	"type":"ff:workbench",
+	"ingredients" : [
+		{
+			"item" : "stick",
+			"count" : 1
+		},
+		{
+			"item" : "fiber",
+			"count" : 1
+		},
+		{
+			"item" : "stone",
+			"count" : 2
+		}
+	],
+	"result" : "stone_pickaxe",
+	"delay" : 0
+}

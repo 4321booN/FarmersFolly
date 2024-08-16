@@ -1,0 +1,15 @@
+{
+	"type":"ff:stone_oven",
+	"ingredients" : [
+		{
+			"item" : "copper_ore",
+			"count" : 1
+		},
+		{
+			"item" : "stick",
+			"count" : 8
+		}
+	],
+	"result" : "copper_ingot",
+	"delay" : 12
+}
