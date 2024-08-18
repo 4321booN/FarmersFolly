@@ -1,0 +1,11 @@
+{
+	"reg_name":"ff:berry",	
+	"display_name":"Berry",
+	"textutre":"berry.png",
+	"type":"food",
+	"tool_tier":"",
+	"tool_type":"",
+	"hunger_restored":2,
+	"health_restored":0,
+	"crop":"",
+}

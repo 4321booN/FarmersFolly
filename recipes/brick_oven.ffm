@@ -10,6 +10,6 @@
 			"count" : 2
 		}
 	],
-	"result" : "brick_oven",
+	"result" : "ff:brick_oven",
 	"delay" : 0
 }

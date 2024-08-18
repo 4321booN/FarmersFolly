@@ -10,6 +10,6 @@
 			"count" : 2
 		}
 	],
-	"result" : "brick_tile",
+	"result" : "ff:brick_tile",
 	"delay" : 0
 }

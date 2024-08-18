@@ -169,7 +169,7 @@ func _physics_process(delta: float) -> void:
 				Inventory.c_hbar_slot["item"] = {}
 			elif ItemParser.is_item_food(Inventory.c_hbar_item["item"]) && hunger < 16:
 				Inventory.remove_inventory_item(Inventory.c_hbar_slot["item"]["item"], 1)
-				hunger += ItemParser.get_food_value(Inventory.c_hbar_slot["item"]["item"])
+				hunger += ItemParser.get_food_value(Inventory.c_hbar_slot["item"]["item"])[0]
 				Inventory.c_hbar_slot["item"] = {}
 			elif ItemParser.is_item_shovel(Inventory.c_hbar_item["item"]) and nothing.has(at_mouse_tile_id):
 				Inventory.add_inventory_item("clay", rng.randi_range(1, 2))

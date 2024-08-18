@@ -24,31 +24,31 @@ func _ready() -> void:
 		scene_instance.set_name("recipe")
 		recipe_container.add_child(scene_instance)
 		recipe_container.get_child(i).result_texture.texture = ItemParser.textures[recipes[i]["result"]]
-		recipe_container.get_child(i).result_label.text = ItemParser.names[recipes[i]["result"]]
+		recipe_container.get_child(i).result_label.text = ItemParser.display_names[recipes[i]["result"]]
 		for j: int in recipes[i]["ingredients"].size():
 			if j == 0:
 				recipe_container.get_child(i).ingredient_texture0.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
-				recipe_container.get_child(i).ingredient_label0.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).ingredient_label0.text = ItemParser.display_names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
 				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 1:
 				recipe_container.get_child(i).ingredient_texture1.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
-				recipe_container.get_child(i).ingredient_label1.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).ingredient_label1.text = ItemParser.display_names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
 				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 2:
 				recipe_container.get_child(i).ingredient_texture2.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
-				recipe_container.get_child(i).ingredient_label2.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).ingredient_label2.text = ItemParser.display_names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
 				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 3:
 				recipe_container.get_child(i).ingredient_texture3.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
-				recipe_container.get_child(i).ingredient_label3.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).ingredient_label3.text = ItemParser.display_names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
 				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 4:
 				recipe_container.get_child(i).ingredient_texture4.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
-				recipe_container.get_child(i).ingredient_label4.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).ingredient_label4.text = ItemParser.display_names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
 				recipe_container.get_child(i).delay = recipes[i]["delay"]
 			if j == 5:
 				recipe_container.get_child(i).ingredient_texture5.texture = ItemParser.textures[recipes[i]["ingredients"][j]["item"]]
-				recipe_container.get_child(i).ingredient_label5.text = ItemParser.names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
+				recipe_container.get_child(i).ingredient_label5.text = ItemParser.display_names[recipes[i]["ingredients"][j]["item"]] + " x" + str(recipes[i]["ingredients"][j]["count"])
 				recipe_container.get_child(i).delay = recipes[i]["delay"]
 
 

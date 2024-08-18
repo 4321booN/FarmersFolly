@@ -10,6 +10,6 @@
 			"count" : 1
 		}
 	],
-	"result" : "copper_ingot",
+	"result" : "ff:copper_ingot",
 	"delay" : 8
 }

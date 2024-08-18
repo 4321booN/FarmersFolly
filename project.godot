@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ItemParser="*res://objects/item/item_parser.gd"
+ItemParser="*res://items/item_parser.gd"
 Inventory="*res://ui, gui and hud/global_inventory.gd"
 PlayerNode="*res://objects/player/player_node.gd"
 Save="*res://save.gd"

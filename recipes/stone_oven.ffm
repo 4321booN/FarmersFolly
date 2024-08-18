@@ -10,6 +10,6 @@
 			"count" : 2
 		}
 	],
-	"result" : "stone_oven",
+	"result" : "ff:stone_oven",
 	"delay" : 0
 }
